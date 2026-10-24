@@ -1,0 +1,20 @@
+@model Booking
+@{ViewData["Title"]="Chuyển khoản VietQR";var p=Model.Payment ?? throw new InvalidOperationException();var qr=ViewBag.QrUrl as string;}
+<div class="shell page-spacer payment-page"><div class="steps">❧ StayEase <span>① Chọn phòng → ② Đặt phòng → <b>③ VietQR &amp; đối soát</b></span></div>
+<div class="payment-card payment-card-wide"><span class="eyebrow rust">THANH TOÁN CHUYỂN KHOẢN</span><h1>Quét VietQR để chuyển khoản</h1>
+<p>Đơn <b>@Model.Reference</b> · <b>@Model.RoomUnit.RoomType.Name</b> · @Model.CheckIn.ToString("dd/MM/yyyy") @Model.CheckInHour.ToString("00"):00 – @Model.CheckOut.ToString("dd/MM/yyyy") @Model.CheckOutHour.ToString("00"):00</p>
+<div class="payment-breakdown"><span>Tổng tiền phòng</span><b>@Model.TotalPrice.ToString("N0")₫</b><span>Tỷ lệ cọc áp dụng khi tạo đơn</span><b>@Model.DepositPercentAtBooking%</b><span>Số tiền cần chuyển khoản</span><b>@p.Amount.ToString("N0")₫</b><span>Trạng thái</span><b>@(Model.Status==BookingStatus.AwaitingVerification?"Chờ admin xác minh":"Chờ chuyển khoản")</b></div>
+@if(Model.Status==BookingStatus.PendingPayment){
+<div class="amount-choices"><form asp-action="SelectAmount" asp-route-id="@Model.Id" method="post"><input type="hidden" name="mode" value="Deposit"/><button class="button @(p.PaymentMode=="Deposit"?"button-forest":"button-outline")" type="submit">Đặt cọc @Model.DepositPercentAtBooking%</button></form>
+<form asp-action="SelectAmount" asp-route-id="@Model.Id" method="post"><input type="hidden" name="mode" value="Full"/><button class="button @(p.PaymentMode=="Full"?"button-forest":"button-outline")" type="submit">Thanh toán 100%</button></form></div>}
+<div class="qr-checkout">
+@if(!string.IsNullOrWhiteSpace(qr)){
+<div><img class="vietqr-image" src="@qr" alt="Mã VietQR chứa thông tin nhận tiền, số tiền và nội dung chuyển khoản của đơn @Model.Reference" referrerpolicy="no-referrer"/><small>VietQR chỉ hỗ trợ tạo mã; không tự động xác nhận đã trả tiền.</small></div>
+<div><h3>Thông tin chuyển khoản</h3><p><b>Ngân hàng:</b> @ViewBag.Bank</p><p><b>Số tài khoản:</b> @ViewBag.Account</p><p><b>Chủ tài khoản:</b> @ViewBag.AccountName</p><p><b>Số tiền:</b> @p.Amount.ToString("N0")₫</p><p><b>Nội dung:</b> @Model.Reference</p></div>
+}else{<div class="soft-note"><strong>Chưa cấu hình tài khoản VietQR.</strong><p>Quản trị viên cần cấu hình VietQr:BankId, VietQr:AccountNumber và VietQr:AccountName trên máy chủ trước khi khách chuyển khoản.</p></div>}
+</div>
+@if(Model.Status==BookingStatus.PendingPayment){<form asp-action="ReportTransfer" asp-route-id="@Model.Id" method="post"><button type="submit" class="button button-forest button-block" disabled="@(string.IsNullOrWhiteSpace(qr))">Tôi đã chuyển khoản – gửi yêu cầu đối soát</button></form>}
+else{<div class="soft-note"><b>Đã tiếp nhận thông báo của bạn.</b> Đơn đang chờ Admin đối chiếu số tiền chuyển khoản thực tế. Không cần gửi ảnh hóa đơn.</div>}
+<p class="tiny">Giữ phòng ban đầu 15 phút. Nếu khách bấm "Tôi đã chuyển khoản" đúng hạn, hệ thống giữ chỗ tối đa thêm 24 giờ để Admin xác minh. Nếu quá hạn chưa được xác nhận, đơn có thể hết hạn; hãy liên hệ lễ tân khi đã thực chuyển tiền.</p>
+<a class="text-link" asp-controller="Bookings" asp-action="Mine">Xem đơn đặt phòng của tôi →</a>
+</div></div>

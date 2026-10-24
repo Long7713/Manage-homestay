@@ -1,0 +1,10 @@
+@model Booking
+@{ViewData["Title"]="Trạng thái đơn";var status=(Model.Status==BookingStatus.PendingPayment||Model.Status==BookingStatus.AwaitingVerification)&&Model.HoldExpiresAtUtc<=DateTime.UtcNow?BookingStatus.Expired:Model.Status;
+var ok=status is BookingStatus.Confirmed or BookingStatus.CheckedIn or BookingStatus.CheckedOut;
+var heading=status switch {BookingStatus.PendingPayment=>"Đang chờ chuyển khoản",BookingStatus.AwaitingVerification=>"Chờ nhân viên xác nhận đã nhận tiền",BookingStatus.Confirmed=>"Đặt phòng đã được xác nhận",BookingStatus.CheckedIn=>"Khách đã nhận phòng",BookingStatus.CheckedOut=>"Đã lưu trú hoàn tất",BookingStatus.Cancelled=>"Đơn đã hủy",_=>"Hết hạn giữ chỗ"};}
+<div class="shell page-spacer payment-page"><div class="payment-card"><div class="payment-icon @(ok?"success":"")">@(ok?"✓":"◷")</div><span class="eyebrow rust">TRẠNG THÁI ĐƠN</span><h1>@heading</h1>
+<p>Mã: <strong>@Model.Reference</strong> · @Model.RoomUnit.RoomType.Name</p>
+<p>@Model.CheckIn.ToString("dd/MM/yyyy") @Model.CheckInHour.ToString("00"):00 → @Model.CheckOut.ToString("dd/MM/yyyy") @Model.CheckOutHour.ToString("00"):00</p>
+<div class="soft-note">@(ok?"Cảm ơn bạn đã lựa chọn StayEase!":status==BookingStatus.AwaitingVerification?"Đã tiếp nhận thông báo chuyển khoản. Chỉ Admin mới xác nhận tiền thực nhận.":"Bạn có thể tạo đơn mới hoặc liên hệ lễ tân nếu đã chuyển khoản.")</div>
+<div class="payment-actions">@if(status==BookingStatus.PendingPayment || status==BookingStatus.AwaitingVerification){<a class="button button-forest" asp-action="Checkout" asp-route-id="@Model.Id">Xem VietQR / theo dõi</a>}
+<a class="button button-outline" asp-controller="Bookings" asp-action="Mine">Đơn của tôi</a><a class="button button-outline" asp-controller="Rooms" asp-action="Index">Xem phòng khác</a></div></div></div>

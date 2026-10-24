@@ -1,0 +1,6 @@
+@model CancelBookingVm
+@{ViewData["Title"]="Hủy đặt phòng";var booking=ViewBag.Booking as Booking ?? throw new InvalidOperationException();}
+<div class="shell page-spacer"><div class="page-heading"><h1>Hủy đặt phòng · @booking.Reference</h1><p>Hủy trước giờ nhận phòng tối thiểu 24 giờ. Để hoàn cọc, vui lòng cung cấp tài khoản ngân hàng nhận tiền.</p></div>
+<div class="content-panel narrow-panel"><form asp-action="Cancel" method="post"><input asp-for="BookingId" type="hidden"/><div asp-validation-summary="All" class="validation"></div>
+<div class="form-grid"><label>Họ tên<input asp-for="ContactName" /></label><label>Email<input asp-for="ContactEmail" type="email"/></label><label>Số điện thoại<input asp-for="ContactPhone"/></label><label>Tên ngân hàng<input asp-for="BankName"/></label><label>Chủ tài khoản<input asp-for="BankAccountHolder"/></label><label>Số tài khoản<input asp-for="BankAccountNumber" inputmode="numeric" pattern="[0-9]{6,25}"/></label></div>
+<div class="payment-actions"><button type="submit" class="button button-forest">Gửi yêu cầu hủy</button><a class="button button-outline" asp-action="Mine">Quay lại</a></div></form></div></div>

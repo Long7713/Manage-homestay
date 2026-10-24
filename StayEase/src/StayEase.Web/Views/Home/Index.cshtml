@@ -1,0 +1,37 @@
+@model IReadOnlyList<RoomType>
+@{ ViewData["Title"]="Nơi chốn dừng chân giữa đại ngàn";
+   var tomorrow=DateOnly.FromDateTime(DateTime.UtcNow.AddHours(7)).AddDays(1);
+}
+<section class="hero">
+  <div class="hero-background"></div>
+  <div class="shell hero-content">
+    <span class="eyebrow light">✧ BOUTIQUE RETREAT &amp; LIVING SANCTUARY · ĐÀ LẠT</span>
+    <h1>Nơi chốn dừng chân<br />giữa đại ngàn <em>tĩnh lặng.</em></h1>
+    <p>Quần thể nghỉ dưỡng khép kín với 12 phòng độc bản nép mình bên sườn thông ngút ngàn. Nơi mỗi nhịp thở đều tìm thấy sự an yên.</p>
+    <form class="search-bar" asp-controller="Rooms" asp-action="Index" method="get">
+      <label><span>▦ NHẬN PHÒNG</span><input type="date" name="checkIn" min="@tomorrow.ToString("yyyy-MM-dd")" value="@tomorrow.ToString("yyyy-MM-dd")" required /></label>
+      <label><span>▦ TRẢ PHÒNG</span><input type="date" name="checkOut" value="@tomorrow.AddDays(2).ToString("yyyy-MM-dd")" required /></label>
+      <label><span>♙ SỐ LƯỢNG KHÁCH</span><select name="adults"><option value="2">2 khách · 1 phòng</option><option value="1">1 khách · 1 phòng</option><option value="3">3 khách</option><option value="4">4 khách</option></select></label>
+      <button class="button button-forest" type="submit">Kiểm tra phòng trống <span>↗</span></button>
+    </form>
+    <div class="hero-note">◉ Độc quyền tại Măng Lin · Miễn phí bữa sáng cho một số hạng phòng</div>
+  </div>
+</section>
+<section class="section shell intro-section">
+  <div class="intro-image"><img src="/images/wood-bedroom.webp" alt="Nội thất phòng gỗ ấm cúng tại StayEase" /><div class="floating-note"><span>✶ MỘC MẠC &amp; TĨNH TẠI</span><p>Không gian sống tinh tế giữa thiên nhiên an lành.</p></div></div>
+  <div class="intro-copy"><span class="eyebrow rust">♧ TRIẾT LÝ SỐNG CHẬM &amp; HÀI HÒA</span>
+    <h2>Chỉ 12 phòng nghỉ, giữ trọn sự riêng tư tuyệt đối</h2>
+    <p>Ẩn mình giữa thung lũng Măng Lin rợp bóng thông xanh, StayEase Sanctuary được thiết kế như một lời mời dịu dàng: bỏ lại nhịp sống hối hả, sống chậm và chạm vào sự tĩnh lặng.</p>
+    <p>Từng khung cửa sổ rộng đón ánh sáng, sàn gỗ ấm và những chi tiết thủ công đưa du khách trở về với thiên nhiên.</p>
+    <div class="stats"><div><b>12</b><span>PHÒNG ĐỘC BẢN</span></div><div><b>2.500m²</b><span>VƯỜN THÔNG</span></div><div><b>1.500m</b><span>ĐỘ CAO</span></div></div>
+  </div>
+</section>
+<section class="section section-muted"><div class="shell">
+ <div class="section-heading"><div><span class="eyebrow rust">BỘ SƯU TẬP 12 PHÒNG</span><h2>Không gian lưu trú tinh tuyển</h2></div><p>Mỗi gian phòng được bài trí theo phong cách mộc tự nhiên, ngập tràn ánh sáng và mang một vẻ tĩnh tại riêng.</p></div>
+ <div class="rooms-grid">@foreach(var room in Model){ @await Html.PartialAsync("_RoomCard",room) }</div>
+ <div class="centered"><a class="button button-outline" asp-controller="Rooms" asp-action="Index">Khám phá tất cả hạng phòng <span>↗</span></a></div>
+</div></section>
+<section class="section shell" id="experiences"><div class="section-heading"><div><span class="eyebrow rust">TIỆN NGHI HOMESTAY</span><h2>Những chi tiết nhỏ<br />tạo nên sự trọn vẹn</h2></div><p>Không hướng tới sự xa hoa hào nhoáng, các tiện ích tại StayEase Sanctuary được chọn lọc để bạn cảm nhận sự ấm áp và tự do.</p></div>
+  <div class="features-grid"><div class="feature"><i>♧</i><h3>Quản gia riêng 24/7</h3><p>Hỗ trợ đặt phòng, di chuyển và nhu cầu cá nhân mọi thời điểm.</p></div><div class="feature"><i>♨</i><h3>Bếp ấm mở dùng chung</h3><p>Những bữa ăn từ nguyên liệu địa phương thân quen.</p></div><div class="feature"><i>☘</i><h3>Dấu tắm hữu cơ tinh dầu thông</h3><p>Phục hồi năng lượng sau một ngày khám phá.</p></div><div class="feature"><i>◉</i><h3>Góc sách &amp; đĩa than vinyl</h3><p>Một góc nhỏ dành cho buổi chiều rất chậm.</p></div></div>
+</section>
+<section class="section section-muted" id="location"><div class="shell location-grid"><div><span class="eyebrow rust">CHỈ DẪN ĐƯỜNG ĐI</span><h2>Tọa lạc tại sườn đồi<br/>Măng Lin tĩnh tại</h2><p>Cách trung tâm Đà Lạt khoảng 6km, Măng Lin là nơi lý tưởng cho những ngày muốn tránh xa sự ồn ã.</p><p>⌖ Suối Đá Măng Lin, Phường 7, Đà Lạt, Lâm Đồng</p><p>◷ Nhận phòng từ 14:00 · Trả phòng trước 12:00</p><p>☏ Hỗ trợ đặt phòng: <strong>1800 6890</strong></p></div><div class="location-visual"><img src="/images/forest-retreat.webp" alt="Toàn cảnh khu nghỉ dưỡng giữa rừng"/><span>StayEase · 11.9754°N, 108.4082°E</span></div></div></section>

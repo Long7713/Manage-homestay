@@ -1,0 +1,30 @@
+@model IReadOnlyList<RoomType>
+@{ViewData["Title"]="Khám phá các hạng phòng";
+  var checkIn=ViewBag.CheckIn as DateOnly?;var checkOut=ViewBag.CheckOut as DateOnly?;
+  var counts=ViewBag.Counts as Dictionary<int,int>;
+}
+<div class="shell page-spacer">
+ <div class="page-heading"><span class="eyebrow rust">CHỌN NƠI LƯU TRÚ</span><h1>Homestay tại Đà Lạt, Lâm Đồng</h1><p>Tìm một không gian riêng dành cho những ngày an yên.</p></div>
+ <form class="search-bar search-inline" asp-action="Index" method="get">
+    <label><span>NHẬN PHÒNG</span><input type="date" name="checkIn" value="@checkIn?.ToString("yyyy-MM-dd")" /></label>
+    <label><span>TRẢ PHÒNG</span><input type="date" name="checkOut" value="@checkOut?.ToString("yyyy-MM-dd")" /></label>
+    <label><span>NGƯỜI LỚN</span><select name="adults">@for(int a=1;a<=4;a++){<option value="@a" selected="@(ViewBag.Adults == a)">@a người lớn</option>}</select></label>
+    <label><span>TỪ KHÓA</span><input type="search" name="q" placeholder="Tìm tên phòng..." value="@ViewBag.Q" /></label>
+    <button type="submit" class="button button-forest">⌕ Tìm kiếm</button>
+ </form>
+ <div class="results-header"><h2>Các hạng phòng hiện có <span class="muted">(@Model.Count)</span></h2><span>Giá đã bao gồm thuế trong bản demo</span></div>
+ <div class="results-grid">
+  <aside class="filters-panel"><h3>Bộ lọc tìm kiếm</h3><p>Phòng riêng · Bình yên · Riêng tư</p><div class="divider"></div><h4>Tiện nghi nổi bật</h4><p>✓ Wi-Fi tốc độ cao</p><p>✓ Nội thất gỗ tự nhiên</p><p>✓ View rừng thông</p><p>✓ Hỗ trợ 24/7</p></aside>
+  <div class="results-list">
+  @foreach(var room in Model){
+    var remaining = counts is null ? (int?)null : (counts.TryGetValue(room.Id, out var n) ? n : 0);
+    <article class="result-room">
+      <a asp-action="Details" asp-route-id="@room.Id" class="result-photo"><img src="@room.ImagePath" alt="@room.Name" /></a>
+      <div class="result-info"><span class="eyebrow rust">♧ STAYEASE SANCTUARY</span><a asp-action="Details" asp-route-id="@room.Id" class="result-title">@room.Name</a><p>@room.Description</p><div class="room-chips"><span>@room.AreaSqm m²</span><span>@room.Adults người lớn</span><span>@room.Children trẻ em</span></div></div>
+      <div class="result-price"><small>@(remaining is null?"Chỉ có số lượng giới hạn":remaining>0?$"Còn {remaining} phòng":"Tạm hết phòng")</small><strong>@room.PricePerNight.ToString("N0")₫</strong><span>/ đêm</span><a class="button button-forest" asp-action="Details" asp-route-id="@room.Id" asp-route-checkIn="@checkIn" asp-route-checkOut="@checkOut">Xem chi tiết ↗</a></div>
+    </article>
+  }
+  @if(Model.Count==0){<div class="empty"><h3>Chưa tìm thấy phòng phù hợp</h3><p>Thử thay đổi số khách hoặc từ khóa.</p></div>}
+  </div>
+ </div>
+</div>

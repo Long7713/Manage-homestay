@@ -1,0 +1,14 @@
+@model RoomType
+<article class="room-card">
+  <a class="room-photo" asp-controller="Rooms" asp-action="Details" asp-route-id="@Model.Id">
+    <img src="@Model.ImagePath" alt="Phòng @Model.Name" loading="lazy" />
+    <span class="photo-badge">Chỉ có @Model.Units.Count phòng</span>
+  </a>
+  <div class="room-card-body">
+    <span class="eyebrow">STAYEASE SANCTUARY</span>
+    <a asp-controller="Rooms" asp-action="Details" asp-route-id="@Model.Id" class="room-title">@Model.Name</a>
+    <p class="clamp-3">@Model.Description</p>
+    <div class="room-chips"><span>♧ @Model.AreaSqm m²</span><span>♙ @Model.Adults người lớn</span><span>♧ @Model.Children trẻ em</span></div>
+    <div class="room-card-bottom"><div><small>Giá từ / đêm</small><strong>@Model.PricePerNight.ToString("N0")₫</strong></div><a class="button button-forest" asp-controller="Rooms" asp-action="Details" asp-route-id="@Model.Id">Chi tiết <span>↗</span></a></div>
+  </div>
+</article>

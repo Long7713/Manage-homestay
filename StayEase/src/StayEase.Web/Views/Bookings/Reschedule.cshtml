@@ -1,0 +1,7 @@
+@model RescheduleVm
+@{ViewData["Title"]="Đổi lịch đặt phòng";var booking=ViewBag.Booking as Booking ?? throw new InvalidOperationException();}
+<div class="shell page-spacer"><div class="page-heading"><h1>Đổi lịch · @booking.Reference</h1><p>Hạng phòng: <b>@booking.RoomUnit.RoomType.Name</b>. Giữ nguyên số đêm (@(booking.CheckOut.DayNumber-booking.CheckIn.DayNumber)) và số tiền đã thỏa thuận; chỉ đổi được trước giờ nhận phòng tối thiểu 24 giờ.</p></div>
+<div class="content-panel narrow-panel"><form asp-action="Reschedule" method="post"><input asp-for="BookingId" type="hidden"/><div asp-validation-summary="All" class="validation"></div>
+<div class="form-grid"><label>Ngày nhận<input asp-for="CheckIn" type="date"/></label><label>Giờ nhận (giờ tròn)<select asp-for="CheckInHour">@for(int h=0;h<24;h++){<option value="@h">@h.ToString("00"):00</option>}</select></label>
+<label>Ngày trả<input asp-for="CheckOut" type="date"/></label><label>Giờ trả (giờ tròn)<select asp-for="CheckOutHour">@for(int h=0;h<24;h++){<option value="@h">@h.ToString("00"):00</option>}</select></label></div>
+<div class="payment-actions"><button type="submit" class="button button-forest">Kiểm tra phòng trống &amp; lưu lịch</button><a class="button button-outline" asp-action="Mine">Quay lại</a></div></form></div></div>

@@ -1,0 +1,31 @@
+@model RoomType
+@{ViewData["Title"]=Model.Name;
+var today=DateOnly.FromDateTime(DateTime.UtcNow.AddHours(7));
+var start=(ViewBag.CheckIn as DateOnly?)??today.AddDays(1);
+var end=(ViewBag.CheckOut as DateOnly?)??today.AddDays(3);
+var others=ViewBag.OtherRooms as List<RoomType>??new();}
+<div class="shell page-spacer">
+  <div class="breadcrumbs"><a asp-controller="Home" asp-action="Index">Trang chủ</a> › <a asp-controller="Rooms" asp-action="Index">Các hạng phòng</a> › @Model.Name</div>
+  <h1 class="detail-title">StayEase Sanctuary – @Model.Name giữa rừng thông Măng Lin</h1>
+  @if(User.Identity?.IsAuthenticated==true){<form asp-controller="Favorites" asp-action="Toggle" method="post" class="favorite-form"><input type="hidden" name="roomTypeId" value="@Model.Id"/><button class="button button-outline" type="submit">♡ Lưu / bỏ yêu thích</button></form>}
+  <div class="gallery"><img class="gallery-main" src="/images/forest-retreat.webp" alt="Toàn cảnh quần thể StayEase"/><img src="@Model.ImagePath" alt="@Model.Name" /><img src="/images/living-room.webp" alt="Phòng khách" /><img src="/images/balcony.webp" alt="Ban công"/><img src="/images/bathtub.webp" alt="Phòng tắm" /></div>
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="summary-stats"><div><small>Quy mô lưu trú</small><strong>12 phòng</strong></div><div><small>Sức chứa</small><strong>@Model.Adults – @(Model.Adults+Model.Children) khách</strong></div><div><small>Phân hạng</small><strong>@Model.AreaSqm m²</strong></div><div><small>Vị trí</small><strong>Măng Lin</strong></div></div>
+      <section class="content-panel"><span class="eyebrow rust">KHOẢNG LẶNG AN TRÚ</span><h2>@Model.Name – nét mộc giữa đồi thông</h2><p>@Model.Description</p><p>Thức dậy cùng ánh nắng xuyên qua rèm cửa, tận hưởng không khí Đà Lạt yên bình và trải nghiệm không gian sống hòa hợp với thiên nhiên.</p></section>
+      <section class="content-panel"><span class="eyebrow rust">TRANG THIẾT BỊ &amp; KHÔNG GIAN</span><h2>Tiện nghi chăm chút cho từng khoảnh khắc</h2><div class="amenities">@foreach(var item in Model.Features.Split(',',StringSplitOptions.RemoveEmptyEntries)){<span>✓ @item.Trim()</span>}<span>✓ Wi-Fi 250 Mbps</span><span>✓ Dịch vụ quản gia 24/7</span><span>✓ Nước suối &amp; trà địa phương</span><span>✓ Sản phẩm chăm sóc thiên nhiên</span></div></section>
+      <section class="content-panel"><span class="eyebrow rust">LƯU Ý KHI LƯU TRÚ</span><h2>Quy tắc &amp; chính sách minh bạch</h2><div class="policy-grid"><div><b>◷ Giờ nhận &amp; trả phòng</b><p>Ngày và giờ nhận/trả phòng được chọn theo giờ tròn khi đặt (giá vẫn theo đêm).</p></div><div><b>♧ Giờ giữ yên tĩnh</b><p>Sau 22:30, vui lòng giữ không gian yên tĩnh.</p></div><div><b>☘ Không hút thuốc trong phòng</b><p>Vui lòng sử dụng khu vực riêng bên ngoài.</p></div><div><b>♙ Thân thiện với thú cưng</b><p>Thông báo trước để được tư vấn phù hợp.</p></div></div></section>
+      <section class="content-panel"><span class="eyebrow rust">CHỌN PHÒNG CỦA BẠN</span><h2>Các hạng phòng khác tại StayEase</h2><div class="mini-rooms">@foreach(var r in others){<div><img src="@r.ImagePath" alt="@r.Name"/><span><b>@r.Name</b><small>@r.PricePerNight.ToString("N0")₫ / đêm</small></span><a asp-action="Details" asp-route-id="@r.Id" class="button button-outline">Xem phòng</a></div>}</div></section>
+    </div>
+    <aside class="booking-box"><h2>@Model.PricePerNight.ToString("N0")₫ <small>/ đêm</small></h2><form asp-controller="Bookings" asp-action="Create" method="get">
+      <input type="hidden" name="roomTypeId" value="@Model.Id"/>
+      <div class="field-row"><label>NHẬN PHÒNG<input type="date" name="checkIn" value="@start.ToString("yyyy-MM-dd")" min="@today.ToString("yyyy-MM-dd")" required/></label><label>TRẢ PHÒNG<input type="date" name="checkOut" value="@end.ToString("yyyy-MM-dd")" required/></label></div>
+      <label>SỐ LƯỢNG KHÁCH<select name="adults">@for(int a=1;a<=Model.Adults;a++){<option value="@a" selected="@(a==Math.Min(2,Model.Adults))">@a người lớn</option>}</select></label>
+      <label>TRẺ EM<select name="children">@for(int c=0;c<=Model.Children;c++){<option value="@c">@c trẻ em</option>}</select></label>
+      <div class="booking-selected"><span>HẠNG PHÒNG ĐÃ CHỌN</span><strong>@Model.Name</strong><small>✓ Bảo đảm số lượng phòng thực tế</small></div>
+      <div class="price-line"><span>Giá phòng / 1 đêm</span><b>@Model.PricePerNight.ToString("N0")₫</b></div>
+      <div class="price-line total"><span>Đặt cọc hiện tại @(ViewBag.DepositPercent)%</span><b>Tỷ lệ chính xác hiển thị khi đặt</b></div>
+      <button class="button button-forest button-block" type="submit">▦ Tiến hành đặt phòng ↗</button><p class="tiny">Thanh toán chuyển khoản VietQR; chỉ Admin được xác nhận tiền thực nhận.</p>
+    </form></aside>
+  </div>
+</div>

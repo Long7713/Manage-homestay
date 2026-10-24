@@ -1,0 +1,37 @@
+@model IReadOnlyList<Booking>
+@using StayEase.Web.Services
+@{ViewData["Title"]="Đặt phòng của tôi";var tab=(string)(ViewBag.Tab??"current");
+ var shown=Model.Where(b=>tab=="completed"?b.Status==BookingStatus.CheckedOut:
+ tab=="cancelled"?b.Status==BookingStatus.Cancelled||b.Status==BookingStatus.Expired:
+ b.Status!=BookingStatus.CheckedOut && b.Status!=BookingStatus.Cancelled && b.Status!=BookingStatus.Expired).ToList();}
+<div class="shell page-spacer"><div class="page-heading"><span class="eyebrow rust">KỲ NGHỈ CỦA BẠN</span><h1>Đặt phòng của tôi</h1><p>Theo dõi đặt phòng, đổi lịch và gửi yêu cầu hủy/hoàn cọc.</p></div>
+ <div class="tab-row"><a class="@(tab=="current"?"active":"")" asp-action="Mine" asp-route-tab="current">Đang xử lý / sắp lưu trú</a><a class="@(tab=="completed"?"active":"")" asp-action="Mine" asp-route-tab="completed">Lưu trú hoàn tất</a><a class="@(tab=="cancelled"?"active":"")" asp-action="Mine" asp-route-tab="cancelled">Đã hủy / hết hạn</a></div>
+ <div class="content-panel"><div class="table-wrap"><table class="pretty-table"><thead><tr><th>Mã đặt phòng</th><th>Hạng phòng</th><th>Nhận → trả</th><th>Tiền phòng / cọc</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>
+ @foreach(var b in shown){
+ var manage=BookingService.CanSelfManage(b);
+ <tr><td><b>@b.Reference</b></td><td>@b.RoomUnit.RoomType.Name</td>
+ <td>@b.CheckIn.ToString("dd/MM/yyyy") @b.CheckInHour.ToString("00"):00<br/>@b.CheckOut.ToString("dd/MM/yyyy") @b.CheckOutHour.ToString("00"):00</td>
+ <td>@b.TotalPrice.ToString("N0")₫<br/><small>Cọc/Thanh toán: @((b.Payment?.Amount??0).ToString("N0"))₫</small></td>
+ <td><span class="status-tag">@(
+ b.Status==BookingStatus.PendingPayment?"Chờ chuyển khoản":
+ b.Status==BookingStatus.AwaitingVerification?"Chờ Admin đối soát":
+ b.Status==BookingStatus.Confirmed?"Đã xác nhận":
+ b.Status==BookingStatus.CheckedIn?"Đang lưu trú":
+ b.Status==BookingStatus.CheckedOut?"Đã lưu trú xong":
+ b.Status==BookingStatus.Cancelled?"Đã hủy":"Hết hạn giữ phòng")</span>
+ @if(b.Status==BookingStatus.Cancelled){<br/><small class="refund-badge">@(b.RefundRequest?.Status switch {
+ RefundStatus.Refunded=>"Đã hoàn cọc",RefundStatus.Pending=>"Đang chờ hoàn cọc",_=>"Không hoàn cọc / chưa phát sinh cọc"})</small>}</td>
+ <td><a class="text-link" asp-controller="Payments" asp-action="@(b.Status==BookingStatus.PendingPayment||b.Status==BookingStatus.AwaitingVerification?"Checkout":"Result")" asp-route-id="@b.Id">Chi tiết</a>
+ @if(manage){<a class="text-link" asp-action="Reschedule" asp-route-id="@b.Id">Đổi lịch</a>
+ <button type="button" class="link-danger" onclick="document.getElementById('cancel-@b.Id').showModal()">Hủy</button>
+ <dialog id="cancel-@b.Id" class="dialog-card"><form method="post" asp-action="Cancel"><input type="hidden" name="BookingId" value="@b.Id"/>
+ <h2>Yêu cầu hủy và hoàn cọc</h2><p>Đơn <b>@b.Reference</b>. Chỉ hủy được trước giờ nhận phòng tối thiểu 24 giờ. Hoàn tiền được Admin kiểm tra và xử lý thủ công.</p>
+ <div class="form-grid"><label>Họ tên<input name="ContactName" value="@b.GuestName" required maxlength="120"/></label><label>Email<input name="ContactEmail" type="email" value="@b.GuestEmail" required/></label>
+ <label>Số điện thoại<input name="ContactPhone" value="@b.GuestPhone" required/></label><label>Tên ngân hàng<input name="BankName" required maxlength="100" placeholder="VD: Vietcombank"/></label>
+ <label>Chủ tài khoản nhận hoàn tiền<input name="BankAccountHolder" required maxlength="100"/></label><label>Số tài khoản<input name="BankAccountNumber" required inputmode="numeric" pattern="[0-9]{6,25}"/></label></div>
+ <p class="tiny">Chủ tài khoản cần khớp thông tin hoàn tiền thực tế; chỉ nhân viên có thẩm quyền được truy cập.</p>
+ <div class="payment-actions"><button type="button" class="button button-outline" onclick="this.closest('dialog').close()">Đóng</button><button type="submit" class="button button-forest">Xác nhận hủy &amp; gửi yêu cầu</button></div></form></dialog>}
+ </td></tr>}
+ </tbody></table></div>@if(shown.Count==0){<div class="empty">Chưa có đơn ở nhóm này. <a asp-controller="Rooms" asp-action="Index">Xem phòng →</a></div>}</div>
+ <p class="muted">* "Lưu trú hoàn tất" chỉ gồm các đơn được nhân viên xác nhận đã trả phòng. Mọi thông tin hoàn cọc là trạng thái xử lý thủ công, không phải hoàn tiền tự động.</p>
+</div>

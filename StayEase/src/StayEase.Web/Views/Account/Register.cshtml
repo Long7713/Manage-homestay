@@ -1,0 +1,17 @@
+@model RegisterVm
+@{ViewData["Title"]="Tạo tài khoản";}
+<section class="auth-section"><div class="shell"><div class="auth-card">
+  <div class="auth-art"><span class="eyebrow light">STAYEASE SANCTUARY · ĐÀ LẠT</span><div><span class="pill copper">Tĩnh tại · Nguyên bản</span><h1>Trở về với<br/><em>khoảng lặng an trú</em><br/>giữa đại ngàn.</h1><p>StayEase gìn giữ những khoảnh khắc thuần khiết và bình yên nhất cho bạn.</p></div><div class="auth-stats"><span>12 Phòng</span><span>Măng Lin</span><span>24/7 Quản gia</span></div></div>
+  <div class="auth-form"><div class="brand"><span class="brand-leaf">❧</span><span><strong>StayEase</strong><small>SANCTUARY</small></span></div><div class="tab-nav"><a asp-action="Login">Đăng nhập</a><a class="active" asp-action="Register">Đăng ký</a></div><h2>Tạo tài khoản Sanctuary</h2>
+     <form asp-action="Register" method="post" class="form-stack">
+       <div asp-validation-summary="All" class="validation"></div>
+       <label>Họ và tên <input asp-for="FullName" placeholder="Nguyễn Văn An" autocomplete="name" /></label>
+       <label>Email <input asp-for="Email" type="email" placeholder="an.nguyen@example.com" autocomplete="email" /></label>
+       <label>Số điện thoại <input asp-for="Phone" type="tel" placeholder="0901 234 567" /></label>
+       <label>Mật khẩu <input asp-for="Password" type="password" autocomplete="new-password" placeholder="Tối thiểu 8 ký tự" /><small>Ít nhất 8 ký tự, chữ hoa, chữ thường, số và ký tự đặc biệt.</small></label>
+       <label>Xác nhận mật khẩu <input asp-for="ConfirmPassword" type="password" autocomplete="new-password" /></label>
+       <label class="checkbox-line"><input asp-for="AcceptTerms" /> Tôi đồng ý với Điều khoản dịch vụ và Chính sách bảo mật.</label>
+       <button class="button button-forest button-block" type="submit">Tạo tài khoản →</button>
+     </form><p class="small-center">Đã có tài khoản? <a asp-action="Login">Đăng nhập ngay</a></p>
+  </div>
+</div></div></section>

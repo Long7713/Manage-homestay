@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="StayEase Sanctuary - Homestay nghỉ dưỡng riêng tư giữa rừng thông Đà Lạt." />
+    <title>@ViewData["Title"] · StayEase Sanctuary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a asp-controller="Home" asp-action="Index" class="brand" aria-label="StayEase Sanctuary, trang chủ">
+       <span class="brand-leaf">❧</span><span><strong>StayEase</strong><small>SANCTUARY</small></span>
+    </a>
+    <nav class="top-nav" id="mainNav" aria-label="Điều hướng chính">
+       <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+       <a asp-controller="Rooms" asp-action="Index">Các hạng phòng</a>
+       <a href="/#experiences">Trải nghiệm &amp; Ẩm thực</a>
+       <a href="/#location">Liên hệ &amp; Vị trí</a>
+    </nav>
+    <div class="header-actions">
+       <a class="button button-forest header-book" asp-controller="Rooms" asp-action="Index">Đặt phòng ngay <span>↗</span></a>
+       @if (User.Identity?.IsAuthenticated == true) {
+           <a class="avatar-btn" asp-controller="Account" asp-action="Profile" aria-label="Hồ sơ">☺</a>
+       } else {
+           <a class="avatar-btn" asp-controller="Account" asp-action="Login" aria-label="Đăng nhập">♙</a>
+       }
+       <button class="mobile-toggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+    </div>
+  </div>
+</header>
+@if(TempData["Notice"] is string notice){ <div class="shell notice-banner">✓ @notice</div> }
+<main>@RenderBody()</main>
+<footer class="site-footer">
+ <div class="shell footer-grid">
+   <div><a asp-controller="Home" asp-action="Index" class="brand"><span class="brand-leaf">❧</span><span><strong>StayEase</strong><small>SANCTUARY</small></span></a>
+   <p>Khu nghỉ dưỡng giữa rừng thông Măng Lin, nơi kiến tạo những khoảng lặng bình yên giữa thiên nhiên nguyên bản.</p><b>1800 6890</b></div>
+   <div><h4>Khám phá</h4><a asp-controller="Rooms" asp-action="Index">Các hạng phòng</a><a href="/#experiences">Trải nghiệm và ẩm thực</a><a href="/#location">Vị trí và liên hệ</a></div>
+   <div><h4>Tài khoản</h4><a asp-controller="Account" asp-action="Profile">Hồ sơ của tôi</a><a asp-controller="Bookings" asp-action="Mine">Đặt phòng của tôi</a><a asp-controller="Favorites" asp-action="Index">Danh sách yêu thích</a></div>
+   <div><h4>Liên hệ</h4><p>Suối Đá Măng Lin, Phường 7, Đà Lạt, Lâm Đồng</p><p>concierge@stayease.vn</p><p>Hỗ trợ 24/7 · 1800 6890</p></div>
+ </div>
+ <div class="shell footer-bottom"><span>© 2026 StayEase Sanctuary · Dự án môn học C# / ASP.NET Core MVC.</span><span>Chính sách bảo mật · Điều khoản đặt phòng · Hướng dẫn sử dụng</span></div>
+</footer>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,14 @@
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\obj\Debug\net8.0-windows\StayEase.Admin.GeneratedMSBuildEditorConfig.editorconfig
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\obj\Debug\net8.0-windows\StayEase.Admin.AssemblyInfoInputs.cache
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\obj\Debug\net8.0-windows\StayEase.Admin.AssemblyInfo.cs
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\obj\Debug\net8.0-windows\StayEase.Admin.csproj.CoreCompileInputs.cache
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\bin\Debug\net8.0-windows\StayEase.Admin.exe
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\bin\Debug\net8.0-windows\StayEase.Admin.deps.json
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\bin\Debug\net8.0-windows\StayEase.Admin.runtimeconfig.json
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\bin\Debug\net8.0-windows\StayEase.Admin.dll
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\bin\Debug\net8.0-windows\StayEase.Admin.pdb
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\obj\Debug\net8.0-windows\StayEase.Admin.dll
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\obj\Debug\net8.0-windows\refint\StayEase.Admin.dll
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\obj\Debug\net8.0-windows\StayEase.Admin.pdb
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\obj\Debug\net8.0-windows\StayEase.Admin.genruntimeconfig.cache
+D:\StayEaseSanctuary_v2\src\StayEase.Admin\obj\Debug\net8.0-windows\ref\StayEase.Admin.dll

@@ -1,0 +1,21 @@
+@model ProfileVm
+@{ViewData["Title"]="Hồ sơ và đặc quyền";
+var bookings=ViewBag.Bookings as List<Booking>??new();}
+<div class="shell page-spacer"><div class="profile-kicker"><span class="eyebrow rust">STAYEASE SANCTUARY MEMBER</span><span class="pill">Hạng lưu trú · Sanctuary Elite ◈</span></div><h1>Hồ sơ &amp; Đặc Quyền Thành Viên</h1>
+<div class="profile-layout"><aside class="profile-sidebar"><div class="sidebar-profile"><div class="round-avatar">☺</div><div><b>@Model.FullName</b><small>@ViewBag.Email</small><small>TÀI KHOẢN ĐÃ XÁC THỰC</small></div></div>
+  <nav class="side-nav"><a class="active" asp-action="Profile">▤ Hồ sơ cá nhân</a><a asp-controller="Bookings" asp-action="Mine">▦ Đặt phòng của tôi <span>@bookings.Count</span></a><a asp-controller="Favorites" asp-action="Index">♡ Danh sách yêu thích <span>@ViewBag.Favorites</span></a><a href="#security">⚙ Cài đặt &amp; Bảo mật</a></nav>
+  <form asp-action="Logout" method="post" class="logout-form"><button class="link-danger" type="submit">↪ Đăng xuất</button></form>
+  <div class="side-message"><span class="eyebrow rust">✷ ĐẶC QUYỀN ƯU ĐÃI</span><p>Thành viên được ưu tiên nhận phòng sớm và những lời chào mừng đặc biệt.</p></div>
+</aside><div class="profile-main">
+ <section class="content-panel"><div class="panel-heading"><div><span class="eyebrow rust">MỤC THÔNG TIN</span><h2>Hồ sơ cá nhân</h2></div><span class="pill">✓ Đã xác thực</span></div>
+   <div class="profile-avatar-line"><div class="round-avatar big">☺</div><div><h3>Ảnh chân dung lưu trú</h3><p>Hình ảnh nhận diện trong hành trình trải nghiệm của bạn.</p></div></div>
+   <form asp-action="Profile" method="post" class="form-stack"><div asp-validation-summary="All" class="validation"></div><div class="form-grid"><label>Họ và tên đầy đủ <input asp-for="FullName" /></label><label>Địa chỉ Email <input asp-for="Email" type="email" /></label><label>Số điện thoại liên hệ <input asp-for="Phone" /></label><label>Ngày sinh <input asp-for="DateOfBirth" type="date" /></label><label>Số CCCD (12 số)<input asp-for="CitizenId" inputmode="numeric" maxlength="12" pattern="[0-9]{12}" autocomplete="off" /></label><label>Mật khẩu hiện tại (nếu đổi email)<input asp-for="CurrentPasswordForEmail" type="password" autocomplete="current-password" /></label></div><button type="submit" class="button button-forest">Lưu cập nhật hồ sơ ✓</button></form>
+   <div class="soft-note"><b>GHI CHÚ LƯU TRÚ &amp; SỞ THÍCH TIÊU DÙNG</b><p>"Khách thích phòng hướng vườn, không gian yên tĩnh và những gian yên giữa núi rừng."</p></div>
+ </section>
+ <section class="content-panel" id="security"><span class="eyebrow rust">BẢO MẬT TÀI KHOẢN</span><h2>Mật Khẩu &amp; Quyền Riêng Tư</h2><div class="settings-row"><span>♧ Mật khẩu đăng nhập <small>Được mã hóa an toàn bởi ASP.NET Core Identity</small></span><span class="pill">Đã bật</span></div><div class="settings-row"><span>♙ Quyền truy cập <small>Chỉ hiển thị và chỉnh sửa dữ liệu của bạn</small></span><span class="pill">Bảo vệ</span></div></section>
+ <section class="content-panel"><span class="eyebrow rust">KỲ NGHỈ CỦA BẠN</span><h2>Đặt phòng gần đây</h2>@if(bookings.Count==0){<div class="empty"><p>Bạn chưa có kỳ nghỉ nào tại StayEase.</p><a class="button button-forest" asp-controller="Rooms" asp-action="Index">Khám phá hạng phòng</a></div>}else{
+    @foreach(var b in bookings){<div class="settings-row"><span><b>@b.RoomUnit.RoomType.Name</b><small>@b.CheckIn.ToString("dd/MM/yyyy") — @b.CheckOut.ToString("dd/MM/yyyy") · @b.Reference</small></span><a class="button button-outline" asp-controller="Payments" asp-action="Result" asp-route-id="@b.Id">@b.Status</a></div>}}
+    <a asp-controller="Bookings" asp-action="Mine" class="text-link">Xem toàn bộ đặt phòng →</a>
+ </section>
+ <section class="content-panel soft-warm"><span class="eyebrow rust">QUẢN LÝ PHIÊN ĐĂNG NHẬP</span><h2>Bảo vệ tài khoản &amp; thoát phiên</h2><p>Bạn có thể đăng xuất khỏi thiết bị này khi hoàn tất.</p><form asp-action="Logout" method="post"><button class="button button-outline" type="submit">↪ Đăng xuất khỏi thiết bị này</button></form></section>
+</div></div></div>

@@ -1,0 +1,47 @@
+@model BookingVm
+@{ViewData["Title"]="Xác nhận đặt phòng";var room=ViewBag.Room as RoomType ?? throw new InvalidOperationException();
+var nights=Math.Max(1,Model.CheckOut.DayNumber-Model.CheckIn.DayNumber);
+var total=room.PricePerNight*nights;var depositPercent=(int)(ViewBag.DepositPercent??50);
+var deposit=decimal.Round(total*depositPercent/100m,0);}
+<div class="shell page-spacer"><div class="steps">◈ StayEase Sanctuary <span>① Chọn phòng → <b>② Đặt phòng</b> → ③ Chuyển khoản VietQR</span></div>
+  <div class="page-heading"><h1>Xác nhận đặt phòng &amp; thông tin lưu trú</h1><p>Thông tin bên dưới được điền từ tài khoản của bạn. Bạn có thể nhập lại theo người thực tế lưu trú; việc chỉnh sửa tại đây không làm thay đổi hồ sơ tài khoản.</p></div>
+  <div class="checkout-grid"><div>
+    <form asp-action="Create" method="post" id="reservation-form">
+      <input asp-for="RoomTypeId" type="hidden" />
+      <div asp-validation-summary="All" class="validation"></div>
+      <section class="content-panel"><h2><span class="stepnum">1</span> Thông tin lưu trú</h2><div class="reservation-heading"><div><small>CƠ SỞ NGHỈ DƯỠNG</small><h3>StayEase Sanctuary</h3></div><div><small>HẠNG PHÒNG ĐÃ CHỌN</small><h3>@room.Name</h3></div></div>
+        <div class="form-grid"><label>NGÀY NHẬN PHÒNG<input asp-for="CheckIn" type="date" required /></label><label>GIỜ NHẬN PHÒNG (GIỜ TRÒN)
+            <select asp-for="CheckInHour">@for(var hour=0;hour<24;hour++){<option value="@hour">@hour.ToString("00"):00</option>}</select></label>
+          <label>NGÀY TRẢ PHÒNG<input asp-for="CheckOut" type="date" required /></label><label>GIỜ TRẢ PHÒNG (GIỜ TRÒN)
+            <select asp-for="CheckOutHour">@for(var hour=0;hour<24;hour++){<option value="@hour">@hour.ToString("00"):00</option>}</select></label>
+          <label>NGƯỜI LỚN<input asp-for="Adults" min="1" max="@room.Adults" type="number" /></label><label>TRẺ EM<input asp-for="Children" min="0" max="@room.Children" type="number" /></label></div>
+        <p class="muted">Giá tính theo số đêm lưu trú; thời gian chọn theo giờ tròn dùng cho nhận/trả phòng và chính sách hủy/đổi lịch.</p>
+      </section>
+      <section class="content-panel"><h2><span class="stepnum">2</span> Người đặt phòng</h2>
+        <label class="form-label"><input type="checkbox" id="useAccountInfo" checked /> Sử dụng thông tin đã lưu trong tài khoản</label>
+        <p class="tiny">Bỏ chọn để nhập thông tin khác cho đơn đặt phòng này.</p>
+        <div class="form-grid"><label>HỌ VÀ TÊN *<input asp-for="GuestName" autocomplete="name" /></label><label>EMAIL *<input asp-for="GuestEmail" type="email" autocomplete="email" /></label>
+          <label>SỐ ĐIỆN THOẠI *<input asp-for="GuestPhone" type="tel" autocomplete="tel" /></label><label>CCCD (12 CHỮ SỐ) *<input asp-for="GuestCitizenId" inputmode="numeric" maxlength="12" pattern="[0-9]{12}" autocomplete="off" /></label></div>
+        <label class="form-label">GHI CHÚ CHO HOMESTAY<textarea asp-for="Note" rows="3" placeholder="Yêu cầu đặc biệt (nếu có)"></textarea></label>
+        <p class="tiny">CCCD được thu thập để phục vụ quản lý khách lưu trú. Không hiển thị công khai thông tin này.</p>
+      </section>
+      <section class="content-panel"><h2><span class="stepnum">3</span> Quy định hủy/đổi lịch</h2>
+        <p>Khách được tự hủy hoặc đổi lịch khi còn <b>ít nhất 24 giờ</b> trước giờ nhận phòng. Hủy đúng hạn được gửi yêu cầu hoàn tiền vào tài khoản ngân hàng do khách cung cấp; Admin đối soát và xử lý thủ công.</p>
+        <p class="muted">Thanh toán qua VietQR; đơn chỉ được xác nhận sau khi Admin kiểm tra tiền chuyển khoản thực nhận.</p>
+      </section>
+    </form>
+  </div>
+  <aside class="checkout-summary"><img src="@room.ImagePath" alt="@room.Name"/><div class="checkout-summary-body"><span class="eyebrow rust">HOMESTAY ĐÀ LẠT</span><h2>@room.Name</h2>
+    <div class="price-line"><span>@Model.CheckIn.ToString("dd/MM/yyyy") – @Model.CheckOut.ToString("dd/MM/yyyy")</span><b>@nights đêm</b></div>
+    <div class="price-line"><span>Giá phòng (@room.PricePerNight.ToString("N0")₫ × @nights)</span><b>@total.ToString("N0")₫</b></div>
+    <div class="price-line total"><strong>Tổng cộng</strong><strong>@total.ToString("N0")₫</strong></div>
+    <div class="deposit"><span>Cọc hiện hành @depositPercent%</span><strong>@deposit.ToString("N0")₫</strong><p>Hoặc chọn chuyển khoản toàn bộ ở bước thanh toán.</p></div>
+    <button form="reservation-form" class="button button-forest button-block" type="submit">Tiếp tục đến VietQR →</button>
+    <p class="tiny">Admin cần kiểm tra giao dịch thực nhận để xác nhận đơn.</p>
+  </div></aside></div>
+</div>
+@section Scripts {<script>
+(function(){const check=document.querySelector('#useAccountInfo');const ids=['GuestName','GuestEmail','GuestPhone','GuestCitizenId'];
+const initial=Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]));
+check.addEventListener('change',()=>ids.forEach(id=>{const el=document.getElementById(id);el.value=check.checked?initial[id]:'';}));})();
+</script>}
