@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trang chủ | HENRY homestay</title>
+<!-- Tailwind CSS v3 -->
+<script src="assets/js/tailwind.js">
+</script>
+<!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+<!-- Tailwind Configuration -->
+<script src="assets/js/legacy-home-1.js">
+</script>
+<!-- Custom Styles -->
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/legacy-fixes.css">
+<link rel="stylesheet" href="assets/css/legacy-home.css">
+<link rel="stylesheet" href="assets/css/guest-picker.css"><link rel="stylesheet" href="assets/css/date-picker.css"><script src="assets/js/popup.js"></script>
+<link rel="stylesheet" href="assets/css/popup-anim.css">
+</head>
+<body class="bg-brand-warmBg font-sans text-brand-brownDark antialiased overflow-x-hidden selection:bg-brand-goldAccent/20 selection:text-brand-brownDark">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-200/60 shadow-sm transition-all" data-purpose="site-navigation-bar">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<!-- Logo & Villa Branding -->
+<a class="font-serif text-[18px] tracking-[0.15em] font-bold uppercase text-[#1b1c1c]" data-purpose="brand-logo" href="index.html">HENRY HOMESTAY</a>
+<!-- Desktop Navigation Menu -->
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-700" data-purpose="nav-links">
+<a class="text-brand-brownDark font-semibold relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-brand-goldAccent" href="#trang-chu">Trang chủ</a>
+<a class="hover:text-brand-goldAccent transition-colors" href="food.html">Ẩm thực</a>
+<a class="hover:text-brand-goldAccent transition-colors" href="#lien-he">Liên hệ</a>
+</nav>
+<!-- User Profile / Account Pill -->
+<div class="flex items-center gap-3" data-purpose="user-menu">
+<div class="hidden sm:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-stone-300 bg-stone-50 hover:bg-white hover:border-brand-goldAccent/60 transition-all cursor-pointer shadow-sm">
+<svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+<div class="w-7 h-7 rounded-full bg-brand-goldAccent/20 text-brand-brownDark flex items-center justify-center font-bold text-xs ring-1 ring-brand-goldAccent/40">
+            QH
+          </div>
+<span class="text-sm font-medium text-stone-800 pr-1">Khách mẫu</span>
+</div>
+<!-- Mobile Menu Hamburger -->
+<button aria-label="Menu" class="md:hidden p-2 rounded-lg text-stone-700 hover:bg-stone-100" data-purpose="mobile-menu-trigger">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+</button>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: HeroSection -->
+<section class="relative bg-stone-900 min-h-[500px] lg:min-h-[560px] flex items-center justify-center overflow-visible" data-purpose="hero-banner" id="trang-chu">
+<!-- Hero Background Image with Opacity & Gradient -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img alt="HENRY homestay Resort View" class="w-full h-full object-cover object-center scale-105 filter brightness-75 contrast-105" src="assets/images/photo-01.jpg">
+<div class="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-900/40 to-black/30">
+</div>
+</div>
+<!-- Hero Content -->
+<div class="relative z-10 max-w-4xl mx-auto text-center px-4 pt-12 pb-24">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-champagne text-xs uppercase tracking-widest mb-4">
+<span class="w-2 h-2 rounded-full bg-brand-goldAccent animate-pulse">
+</span>
+        Trải nghiệm nghỉ dưỡng đẳng cấp
+      </div>
+<h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight mb-4 drop-shadow-md">
+        Khám Phá Thiên Đường Tĩnh Lặng Tại HENRY
+      </h1>
+<p class="text-stone-200 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed drop-shadow">
+        Tận hưởng tầm nhìn toàn cảnh thành phố rực rỡ và những phòng suites thiết kế tinh tế với tiêu chuẩn dịch vụ vượt trội.
+      </p>
+</div>
+<!-- Floating Pill Search Bar (overlaps hero banner and content below) -->
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-11/12 max-w-5xl z-20" data-purpose="booking-search-bar">
+<div class="dp-popup" id="date-popup" hidden></div>
+<div class="bg-white rounded-2xl sm:rounded-full p-2.5 sm:p-3 shadow-2xl border border-stone-200/90 grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-0 sm:divide-x divide-stone-200 items-center">
+<!-- Check-in Zone -->
+<div class="px-5 py-2 hover:bg-stone-50 rounded-full cursor-pointer transition-colors text-left date-zone" id="zone-checkin" role="button" tabindex="0" data-zone="checkin">
+<label class="block text-[11px] uppercase tracking-wider font-bold text-stone-500 mb-0.5 pointer-events-none">Nhận phòng</label>
+<div class="text-sm font-semibold text-brand-brownDark flex items-center gap-1.5">
+<svg class="w-4 h-4 text-brand-goldAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+            <span id="date-checkin">18 thg 4, 2025</span>
+          </div>
+</div>
+<!-- Check-out Zone -->
+<div class="px-5 py-2 hover:bg-stone-50 rounded-full cursor-pointer transition-colors text-left date-zone" id="zone-checkout" role="button" tabindex="0" data-zone="checkout">
+<label class="block text-[11px] uppercase tracking-wider font-bold text-stone-500 mb-0.5 pointer-events-none">Trả phòng</label>
+<div class="text-sm font-semibold text-brand-brownDark flex items-center gap-1.5">
+<svg class="w-4 h-4 text-brand-goldAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+            <span id="date-checkout">22 thg 4, 2025</span>
+          </div>
+</div>
+<!-- Guests Zone -->
+<div class="guest-picker relative px-5 py-2 hover:bg-stone-50 rounded-full cursor-pointer transition-colors text-left" id="guest-picker" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false">
+<label class="block text-[11px] uppercase tracking-wider font-bold text-stone-500 mb-0.5">Số lượng khách</label>
+<div class="text-sm font-semibold text-brand-brownDark flex items-center gap-1.5">
+<svg class="w-4 h-4 text-brand-goldAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+            <span id="guest-summary">2 khách</span>
+          </div>
+<div class="gp-popup" id="guest-popup" hidden>
+<div class="gp-row">
+<div><div class="gp-title">Người lớn</div><div class="gp-desc">Từ 13 tuổi trở lên</div></div>
+<div class="gp-stepper"><button type="button" class="gp-btn" data-guest="adults" data-delta="-1" aria-label="Giảm người lớn">−</button><span class="gp-count" data-count="adults">2</span><button type="button" class="gp-btn" data-guest="adults" data-delta="1" aria-label="Tăng người lớn">+</button></div>
+</div>
+<div class="gp-row">
+<div><div class="gp-title">Trẻ em</div><div class="gp-desc">Độ tuổi 2 – 12</div></div>
+<div class="gp-stepper"><button type="button" class="gp-btn" data-guest="children" data-delta="-1" aria-label="Giảm trẻ em">−</button><span class="gp-count" data-count="children">0</span><button type="button" class="gp-btn" data-guest="children" data-delta="1" aria-label="Tăng trẻ em">+</button></div>
+</div>
+<div class="gp-row">
+<div><div class="gp-title">Em bé</div><div class="gp-desc">Dưới 2 tuổi</div></div>
+<div class="gp-stepper"><button type="button" class="gp-btn" data-guest="infants" data-delta="-1" aria-label="Giảm em bé">−</button><span class="gp-count" data-count="infants">0</span><button type="button" class="gp-btn" data-guest="infants" data-delta="1" aria-label="Tăng em bé">+</button></div>
+</div>
+<div class="gp-row">
+<div><div class="gp-title">Thú cưng</div><div class="gp-desc">Mang theo động vật phục vụ? Vui lòng báo trước cho HENRY.</div></div>
+<div class="gp-stepper"><button type="button" class="gp-btn" data-guest="pets" data-delta="-1" aria-label="Giảm thú cưng">−</button><span class="gp-count" data-count="pets">0</span><button type="button" class="gp-btn" data-guest="pets" data-delta="1" aria-label="Tăng thú cưng">+</button></div>
+</div>
+</div>
+</div>
+<!-- Search Action Button -->
+<div class="px-2 py-1 flex items-center justify-end">
+<button class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-brand-coral hover:bg-brand-coralHover text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-coral/30 hover:shadow-xl transition-all active:scale-95">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+</path>
+</svg>
+<span class="">Tìm phòng</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: FeaturedRoomsCarousel (Exact Match to IMAGE_2) -->
+<section class="pt-28 pb-16 bg-brand-cream relative overflow-hidden" data-purpose="featured-rooms-carousel" id="phong-noi-bat">
+<!-- Carousel Header -->
+<div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 flex items-end justify-between mb-8">
+<div>
+<!-- Subtitle matching reference: "— PHÒNG NỔI BẬT" -->
+<div class="flex items-center gap-2 text-brand-goldAccent text-xs sm:text-sm font-semibold tracking-widest uppercase mb-1">
+<span class="">—</span> PHÒNG NỔI BẬT
+        </div>
+<!-- Main title: "Chọn không gian của riêng bạn" -->
+<h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-brand-brownDark font-bold tracking-tight">
+          Chọn không gian
+          <span class="block italic font-normal text-brand-goldLight mt-0.5">của riêng bạn</span>
+</h2>
+</div>
+<!-- Arrow Navigation Controls -->
+</div>
+<!-- Scrollable Horizontal Track Container -->
+<div class="relative max-w-[1440px] mx-auto group/carousel">
+<button aria-label="Cuộn sang trái" class="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 hover:bg-white text-stone-800 shadow-lg hover:shadow-xl border border-stone-200/80 flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md" id="scrollLeftBtn">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+</button>
+<div class="carousel-container flex gap-5 overflow-x-auto no-scrollbar scroll-smooth px-6 sm:px-10 lg:px-14 pb-6" data-purpose="horizontal-room-track" id="roomsCarouselTrack" style="-webkit-overflow-scrolling: touch;">
+<article class="flex-none w-[275px] sm:w-[290px] rounded-lg overflow-hidden bg-brand-cardBrown shadow-xl flex flex-col group transition-transform duration-300 hover:-translate-y-1" data-purpose="room-card">
+<div class="relative h-[310px] w-full overflow-hidden bg-stone-300">
+<img alt="VISTA VIEW 41" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" src="assets/images/photo-02.jpg">
+</div>
+<div class="p-4 sm:p-5 flex-1 flex flex-col justify-between text-stone-200">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-semibold text-brand-champagne mb-1">1 PHÒNG NGỦ · 4 SỐ KHÁCH</p>
+<h3 class="font-serif text-lg font-bold text-white tracking-wide mb-1">VISTA VIEW 41</h3>
+<p class="text-[11px] uppercase tracking-wider text-stone-300/80 font-light">35M² · CITY VIEW · QUEEN BED</p>
+</div>
+<div class="mt-4 pt-3 border-t border-stone-700/60 flex items-center justify-between">
+<div>
+<span class="text-sm font-bold text-white">1.099.000 ₫</span>
+<p class="text-[9px] uppercase tracking-wider text-stone-400">/ ĐÊM · ĐÃ BAO GỒM THUẾ</p>
+</div>
+<a aria-label="Chi tiết VISTA VIEW 41" class="w-7 h-7 rounded-full bg-stone-700/60 hover:bg-brand-goldAccent flex items-center justify-center text-white transition-colors" href="#">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+</path>
+</svg>
+</a>
+</div>
+</div>
+</article>
+<article class="flex-none w-[275px] sm:w-[290px] rounded-lg overflow-hidden bg-brand-cardBrown shadow-xl flex flex-col group transition-transform duration-300 hover:-translate-y-1" data-purpose="room-card">
+<div class="relative h-[310px] w-full overflow-hidden bg-stone-300">
+<img alt="VISTA VIEW 42" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" src="assets/images/photo-03.jpg">
+</div>
+<div class="p-4 sm:p-5 flex-1 flex flex-col justify-between text-stone-200">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-semibold text-brand-champagne mb-1">1 PHÒNG NGỦ · 4 SỐ KHÁCH</p>
+<h3 class="font-serif text-lg font-bold text-white tracking-wide mb-1">VISTA VIEW 42</h3>
+<p class="text-[11px] uppercase tracking-wider text-stone-300/80 font-light">40M² · CITY VIEW · QUEEN BED</p>
+</div>
+<div class="mt-4 pt-3 border-t border-stone-700/60 flex items-center justify-between">
+<div>
+<span class="text-sm font-bold text-white">1.099.000 ₫</span>
+<p class="text-[9px] uppercase tracking-wider text-stone-400">/ ĐÊM · ĐÃ BAO GỒM THUẾ</p>
+</div>
+<a aria-label="Chi tiết VISTA VIEW 42" class="w-7 h-7 rounded-full bg-stone-700/60 hover:bg-brand-goldAccent flex items-center justify-center text-white transition-colors" href="#">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+</path>
+</svg>
+</a>
+</div>
+</div>
+</article>
+<article class="flex-none w-[275px] sm:w-[290px] rounded-lg overflow-hidden bg-brand-cardBrown shadow-xl flex flex-col group transition-transform duration-300 hover:-translate-y-1" data-purpose="room-card">
+<div class="relative h-[310px] w-full overflow-hidden bg-stone-300">
+<img alt="VISTA VIEW 51" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" src="assets/images/photo-04.jpg">
+</div>
+<div class="p-4 sm:p-5 flex-1 flex flex-col justify-between text-stone-200">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-semibold text-brand-champagne mb-1">1 PHÒNG NGỦ · 4 SỐ KHÁCH</p>
+<h3 class="font-serif text-lg font-bold text-white tracking-wide mb-1">VISTA VIEW 51</h3>
+<p class="text-[11px] uppercase tracking-wider text-stone-300/80 font-light">35M² · CITY VIEW · QUEEN BED</p>
+</div>
+<div class="mt-4 pt-3 border-t border-stone-700/60 flex items-center justify-between">
+<div>
+<span class="text-sm font-bold text-white">1.099.000 ₫</span>
+<p class="text-[9px] uppercase tracking-wider text-stone-400">/ ĐÊM · ĐÃ BAO GỒM THUẾ</p>
+</div>
+<a aria-label="Chi tiết VISTA VIEW 51" class="w-7 h-7 rounded-full bg-stone-700/60 hover:bg-brand-goldAccent flex items-center justify-center text-white transition-colors" href="#">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+</path>
+</svg>
+</a>
+</div>
+</div>
+</article>
+<article class="flex-none w-[275px] sm:w-[290px] rounded-lg overflow-hidden bg-brand-cardBrown shadow-xl flex flex-col group transition-transform duration-300 hover:-translate-y-1" data-purpose="room-card">
+<div class="relative h-[310px] w-full overflow-hidden bg-stone-300">
+<img alt="VISTA VIEW 52" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" src="assets/images/photo-05.jpg">
+</div>
+<div class="p-4 sm:p-5 flex-1 flex flex-col justify-between text-stone-200">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-semibold text-brand-champagne mb-1">1 PHÒNG NGỦ · 4 SỐ KHÁCH</p>
+<h3 class="font-serif text-lg font-bold text-white tracking-wide mb-1">VISTA VIEW 52</h3>
+<p class="text-[11px] uppercase tracking-wider text-stone-300/80 font-light">40M² · CITY VIEW · QUEEN BED</p>
+</div>
+<div class="mt-4 pt-3 border-t border-stone-700/60 flex items-center justify-between">
+<div>
+<span class="text-sm font-bold text-white">1.099.000 ₫</span>
+<p class="text-[9px] uppercase tracking-wider text-stone-400">/ ĐÊM · ĐÃ BAO GỒM THUẾ</p>
+</div>
+<a aria-label="Chi tiết VISTA VIEW 52" class="w-7 h-7 rounded-full bg-stone-700/60 hover:bg-brand-goldAccent flex items-center justify-center text-white transition-colors" href="#">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+</path>
+</svg>
+</a>
+</div>
+</div>
+</article>
+<article class="flex-none w-[275px] sm:w-[290px] rounded-lg overflow-hidden bg-brand-cardBrown shadow-xl flex flex-col group transition-transform duration-300 hover:-translate-y-1" data-purpose="room-card">
+<div class="relative h-[310px] w-full overflow-hidden bg-stone-300">
+<img alt="VISTA VIEW 6" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" src="assets/images/photo-06.jpg">
+</div>
+<div class="p-4 sm:p-5 flex-1 flex flex-col justify-between text-stone-200">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-semibold text-brand-champagne mb-1">3 PHÒNG NGỦ · 6 SỐ KHÁCH</p>
+<h3 class="font-serif text-lg font-bold text-white tracking-wide mb-1">VISTA VIEW 6</h3>
+<p class="text-[11px] uppercase tracking-wider text-stone-300/80 font-light">70M² · CITY VIEW · QUEEN BED</p>
+</div>
+<div class="mt-4 pt-3 border-t border-stone-700/60 flex items-center justify-between">
+<div>
+<span class="text-sm font-bold text-white">2.299.000 ₫</span>
+<p class="text-[9px] uppercase tracking-wider text-stone-400">/ ĐÊM · ĐÃ BAO GỒM THUẾ</p>
+</div>
+<a aria-label="Chi tiết VISTA VIEW 6" class="w-7 h-7 rounded-full bg-stone-700/60 hover:bg-brand-goldAccent flex items-center justify-center text-white transition-colors" href="#">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+</path>
+</svg>
+</a>
+</div>
+</div>
+</article>
+<article class="flex-none w-[275px] sm:w-[290px] rounded-lg overflow-hidden bg-brand-cardBrown shadow-xl flex flex-col group transition-transform duration-300 hover:-translate-y-1" data-purpose="room-card">
+<div class="relative h-[310px] w-full overflow-hidden bg-stone-300">
+<img alt="VISTA VIEW 71" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" src="assets/images/photo-07.jpg">
+</div>
+<div class="p-4 sm:p-5 flex-1 flex flex-col justify-between text-stone-200">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-semibold text-brand-champagne mb-1">STUDIO · 2 SỐ KHÁCH</p>
+<h3 class="font-serif text-lg font-bold text-white tracking-wide mb-1">VISTA VIEW 71</h3>
+<p class="text-[11px] uppercase tracking-wider text-stone-300/80 font-light">40M² · CITY VIEW · QUEEN BED</p>
+</div>
+<div class="mt-4 pt-3 border-t border-stone-700/60 flex items-center justify-between">
+<div>
+<span class="text-sm font-bold text-white">1.299.000 ₫</span>
+<p class="text-[9px] uppercase tracking-wider text-stone-400">/ ĐÊM · ĐÃ BAO GỒM THUẾ</p>
+</div>
+<a aria-label="Chi tiết VISTA VIEW 71" class="w-7 h-7 rounded-full bg-stone-700/60 hover:bg-brand-goldAccent flex items-center justify-center text-white transition-colors" href="#">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+</path>
+</svg>
+</a>
+</div>
+</div>
+</article>
+<article class="flex-none w-[275px] sm:w-[290px] rounded-lg overflow-hidden bg-brand-cardBrown shadow-xl flex flex-col group transition-transform duration-300 hover:-translate-y-1" data-purpose="room-card">
+<div class="relative h-[310px] w-full overflow-hidden bg-stone-300">
+<img alt="VISTA VIEW 72" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" src="assets/images/photo-08.jpg">
+</div>
+<div class="p-4 sm:p-5 flex-1 flex flex-col justify-between text-stone-200">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-semibold text-brand-champagne mb-1">STUDIO · 2 SỐ KHÁCH</p>
+<h3 class="font-serif text-lg font-bold text-white tracking-wide mb-1">VISTA VIEW 72</h3>
+<p class="text-[11px] uppercase tracking-wider text-stone-300/80 font-light">40M² · CITY VIEW · QUEEN BED</p>
+</div>
+<div class="mt-4 pt-3 border-t border-stone-700/60 flex items-center justify-between">
+<div>
+<span class="text-sm font-bold text-white">1.499.000 ₫</span>
+<p class="text-[9px] uppercase tracking-wider text-stone-400">/ ĐÊM · ĐÃ BAO GỒM THUẾ</p>
+</div>
+<a aria-label="Chi tiết VISTA VIEW 72" class="w-7 h-7 rounded-full bg-stone-700/60 hover:bg-brand-goldAccent flex items-center justify-center text-white transition-colors" href="#">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+</path>
+</svg>
+</a>
+</div>
+</div>
+</article>
+<article class="flex-none w-[275px] sm:w-[290px] rounded-lg overflow-hidden bg-brand-cardBrown shadow-xl flex flex-col group transition-transform duration-300 hover:-translate-y-1" data-purpose="room-card">
+<div class="relative h-[310px] w-full overflow-hidden bg-stone-300">
+<img alt="VISTA VIEW 81" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" src="assets/images/photo-09.jpg">
+</div>
+<div class="p-4 sm:p-5 flex-1 flex flex-col justify-between text-stone-200">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-semibold text-brand-champagne mb-1">2 PHÒNG NGỦ · 4 SỐ KHÁCH</p>
+<h3 class="font-serif text-lg font-bold text-white tracking-wide mb-1">VISTA VIEW 81</h3>
+<p class="text-[11px] uppercase tracking-wider text-stone-300/80 font-light">69M² · CITY VIEW · KING BED</p>
+</div>
+<div class="mt-4 pt-3 border-t border-stone-700/60 flex items-center justify-between">
+<div>
+<span class="text-sm font-bold text-white">2.099.000 ₫</span>
+<p class="text-[9px] uppercase tracking-wider text-stone-400">/ ĐÊM · ĐÃ BAO GỒM THUẾ</p>
+</div>
+<a aria-label="Chi tiết VISTA VIEW 81" class="w-7 h-7 rounded-full bg-stone-700/60 hover:bg-brand-goldAccent flex items-center justify-center text-white transition-colors" href="#">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+</path>
+</svg>
+</a>
+</div>
+</div>
+</article>
+</div>
+<button aria-label="Cuộn sang phải" class="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 hover:bg-white text-stone-800 shadow-lg hover:shadow-xl border border-stone-200/80 flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md" id="scrollRightBtn">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+</button>
+</div>
+</section>
+<!-- END: FeaturedRoomsCarousel -->
+<!-- BEGIN: AvailableRoomsOverview -->
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-purpose="available-rooms-section">
+<!-- Header with counter badge -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-stone-200/80">
+<div class="max-w-2xl">
+<div class="flex items-center gap-2 text-brand-goldAccent text-xs sm:text-sm font-semibold tracking-widest uppercase mb-1.5">
+<span class="">—</span> BỘ SƯU TẬP KHÔNG GIAN</div>
+<h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-brownDark tracking-tight">Tất cả phòng <span class="italic font-normal text-brand-goldLight">của home HENRY</span>
+</h2>
+<p class="text-sm sm:text-base text-stone-500 mt-2 font-light leading-relaxed">Không gian nghỉ dưỡng ấm cúng, tiện nghi được chuẩn bị chu đáo cho kỳ nghỉ trọn vẹn của bạn.</p>
+</div>
+</div>
+<!-- Quick Listing Feature Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Row 1: Rooms 1-4 -->
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 41" class="w-full h-full object-cover" src="assets/images/photo-10.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">City View</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 41</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">1 Phòng ngủ · 4 Khách · 35m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">1.099.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 42" class="w-full h-full object-cover" src="assets/images/photo-11.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">Ban công lớn</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 42</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">1 Phòng ngủ · 4 Khách · 40m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">1.099.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 6" class="w-full h-full object-cover" src="assets/images/photo-12.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-amber-700/80 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">Suite Gia Đình</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 6</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">3 Phòng ngủ · 6 Khách · 70m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">2.299.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 81" class="w-full h-full object-cover" src="assets/images/photo-13.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">King View</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 81</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">2 Phòng ngủ · 4 Khách · 69m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">2.099.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<!-- Row 2: Rooms 5-8 -->
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 51" class="w-full h-full object-cover" src="assets/images/photo-04.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">View Hồ Tây</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 51</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">1 Phòng ngủ · 4 Khách · 35m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">1.150.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 52" class="w-full h-full object-cover" src="assets/images/photo-05.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-stone-800/80 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">Balcony Sunset</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 52</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">1 Phòng ngủ · 4 Khách · 40m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">1.190.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 71" class="w-full h-full object-cover" src="assets/images/photo-07.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">Studio Cozy</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 71</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">Studio · 2 Khách · 40m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">1.299.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 72" class="w-full h-full object-cover" src="assets/images/photo-08.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-amber-700/80 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">Sân Vườn</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 72</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">Studio · 2 Khách · 40m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">1.499.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<!-- Row 3: Rooms 9-12 -->
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 31" class="w-full h-full object-cover" src="assets/images/photo-02.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">Phố Cổ View</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 31</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">1 Phòng ngủ · 2 Khách · 32m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">1.050.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View 32" class="w-full h-full object-cover" src="assets/images/photo-03.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">Cửa Sổ Thoáng</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista View 32</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">1 Phòng ngủ · 3 Khách · 38m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">1.120.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View Penthouse 91" class="w-full h-full object-cover" src="assets/images/photo-06.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-amber-700/80 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">Penthouse</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista Penthouse 91</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">3 Phòng ngủ · 8 Khách · 95m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">3.250.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Vista View Duplex 82" class="w-full h-full object-cover" src="assets/images/photo-09.jpg">
+<div class="absolute top-3 left-3 px-2 py-0.5 bg-stone-800/80 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">Duplex Suite</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-serif font-bold text-brand-brownDark">Vista Duplex 82</h4>
+</div>
+<p class="text-xs text-stone-500 mb-3">2 Tầng · 4 Khách · 75m²</p>
+<div class="flex items-center justify-between pt-2 border-t border-stone-100">
+<div>
+<span class="text-sm font-bold text-brand-coral">2.599.000 ₫</span>
+<span class="text-[10px] text-stone-400">/đêm</span>
+</div>
+<button class="text-xs font-semibold text-brand-brownDark hover:text-brand-goldAccent underline">Đặt ngay</button>
+</div>
+</div>
+</div>
+<!-- Row 4: Rooms 13-16 -->
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+</div>
+<!-- Row 5: Rooms 17-20 -->
+<div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+</div>
+</div>
+<!-- Pagination Component -->
+<div class="mt-12 pt-8 border-t border-stone-200/80 flex flex-col sm:flex-row items-center gap-4 justify-center">
+<nav aria-label="Phân trang phòng" class="inline-flex items-center gap-1.5 sm:gap-2">
+<button aria-label="Trang trước" class="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-600 hover:bg-stone-50 hover:border-brand-goldAccent/60 flex items-center justify-center transition-colors shadow-sm disabled:opacity-40 cursor-pointer" disabled="">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+</button>
+<button aria-current="page" class="w-9 h-9 rounded-full bg-brand-brownDark text-white font-semibold text-xs sm:text-sm shadow-md flex items-center justify-center transition-transform hover:scale-105">1</button>
+<button class="w-9 h-9 rounded-full border border-stone-300 bg-white text-brand-brownDark hover:border-brand-goldAccent hover:text-brand-goldAccent font-medium text-xs sm:text-sm flex items-center justify-center transition-colors shadow-sm">2</button>
+<button class="w-9 h-9 rounded-full border border-stone-300 bg-white text-brand-brownDark hover:border-brand-goldAccent hover:text-brand-goldAccent font-medium text-xs sm:text-sm flex items-center justify-center transition-colors shadow-sm">3</button>
+<span class="px-1.5 text-stone-400 text-xs sm:text-sm">…</span>
+<button class="w-9 h-9 rounded-full border border-stone-300 bg-white text-brand-brownDark hover:border-brand-goldAccent hover:text-brand-goldAccent font-medium text-xs sm:text-sm flex items-center justify-center transition-colors shadow-sm">8</button>
+<button aria-label="Trang sau" class="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-600 hover:bg-stone-50 hover:border-brand-goldAccent/60 flex items-center justify-center transition-colors shadow-sm cursor-pointer">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+</button>
+</nav>
+</div>
+</section>
+<section class="py-16 bg-stone-50 border-t border-stone-200/80" data-purpose="amenities-details-section">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-12">
+<div class="flex items-center justify-center gap-2 text-brand-goldAccent text-xs sm:text-sm font-semibold tracking-widest uppercase mb-2">
+<span class="">—</span> TIỆN NGHI &amp; ĐẶC QUYỀN <span class="">—</span>
+</div>
+<h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-brand-brownDark font-bold tracking-tight">Mọi chi tiết<div>&nbsp; <span class="italic font-normal text-brand-goldLight">đều được chăm chút</span>
+</div>
+</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+<div class="p-6 rounded-xl bg-white/80 border border-stone-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+<div class="text-brand-goldAccent text-xl font-serif mb-3">✦</div>
+<h3 class="font-serif font-bold text-lg text-brand-brownDark mb-2">Nhà cổ xác thực</h3>
+<p class="text-xs text-stone-600 leading-relaxed font-light">Không gian được chuẩn bị kỹ cho một kỳ nghỉ yên tĩnh và tiện nghi giữa phố cổ.</p>
+</div>
+<div class="p-6 rounded-xl bg-white/80 border border-stone-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+<div class="text-brand-goldAccent text-xl font-serif mb-3">✦</div>
+<h3 class="font-serif font-bold text-lg text-brand-brownDark mb-2">Ánh sáng tự nhiên</h3>
+<p class="text-xs text-stone-600 leading-relaxed font-light">Cửa sổ, ban công và khoảng mở được giữ lại để phòng luôn thoáng và dễ chịu.</p>
+</div>
+<div class="p-6 rounded-xl bg-white/80 border border-stone-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+<div class="text-brand-goldAccent text-xl font-serif mb-3">✦</div>
+<h3 class="font-serif font-bold text-lg text-brand-brownDark mb-2">Trải nghiệm 5 sao</h3>
+<p class="text-xs text-stone-600 leading-relaxed font-light">Giường, khăn, đồ dùng và quy trình chăm sóc phòng được kiểm tra trước mỗi lượt ở.</p>
+</div>
+<div class="p-6 rounded-xl bg-white/80 border border-stone-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+<div class="text-brand-goldAccent text-xl font-serif mb-3">✦</div>
+<h3 class="font-serif font-bold text-lg text-brand-brownDark mb-2">Vị trí đắc địa</h3>
+<p class="text-xs text-stone-600 leading-relaxed font-light">Dễ di chuyển đến Hồ Hoàn Kiếm, phố đi bộ, chợ đêm và các điểm di sản trung tâm.</p>
+</div>
+<div class="p-6 rounded-xl bg-white/80 border border-stone-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+<div class="text-brand-goldAccent text-xl font-serif mb-3">✦</div>
+<h3 class="font-serif font-bold text-lg text-brand-brownDark mb-2">Wifi 500Mbps</h3>
+<p class="text-xs text-stone-600 leading-relaxed font-light">Kết nối ổn định cho làm việc từ xa, giải trí và giữ liên lạc trong suốt kỳ nghỉ.</p>
+</div>
+<div class="p-6 rounded-xl bg-white/80 border border-stone-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+<div class="text-brand-goldAccent text-xl font-serif mb-3">✦</div>
+<h3 class="font-serif font-bold text-lg text-brand-brownDark mb-2">Check-in 24/7</h3>
+<p class="text-xs text-stone-600 leading-relaxed font-light">Hỗ trợ nhận phòng linh hoạt với hướng dẫn rõ ràng và đội ngũ luôn sẵn sàng.</p>
+</div>
+<div class="p-6 rounded-xl bg-white/80 border border-stone-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+<div class="text-brand-goldAccent text-xl font-serif mb-3">✦</div>
+<h3 class="font-serif font-bold text-lg text-brand-brownDark mb-2">Xe đạp miễn phí</h3>
+<p class="text-xs text-stone-600 leading-relaxed font-light">Khám phá các tuyến phố nhỏ, quán cà phê và hồ nước gần nhà theo nhịp riêng.</p>
+</div>
+<div class="p-6 rounded-xl bg-white/80 border border-stone-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+<div class="text-brand-goldAccent text-xl font-serif mb-3">✦</div>
+<h3 class="font-serif font-bold text-lg text-brand-brownDark mb-2">Đội ngũ địa phương</h3>
+<p class="text-xs text-stone-600 leading-relaxed font-light">Gợi ý ăn uống, lịch trình và trải nghiệm quanh phố cổ từ những người hiểu khu vực.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: AvailableRoomsOverview -->
+<!-- BEGIN: FloatingSocialWidget (Matching Right Widget in reference) -->
+<!-- END: FloatingSocialWidget -->
+<!-- BEGIN: MainFooter -->
+<footer class="bg-[#1c130d] text-stone-300 pt-16 pb-12 border-t border-stone-800" data-purpose="site-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+<div class="md:col-span-5 space-y-4">
+<div class="flex flex-col">
+<span class="font-serif text-3xl tracking-widest uppercase font-bold text-brand-goldLight">HENRY</span>
+<span class="text-[11px] tracking-widest uppercase font-semibold text-brand-champagne/80">HOMESTAY</span>
+</div>
+<p class="font-serif italic text-sm text-stone-300 leading-relaxed font-normal max-w-sm">Những ngôi nhà cổ được hồi sinh trong lòng 36 phố phường.</p>
+<div class="flex items-center gap-2 py-1 text-brand-goldAccent/60 text-xs">
+<span class="">✦</span>
+<span class="h-[1px] w-16 bg-brand-goldAccent/30 inline-block">
+</span>
+<span class="">✦</span>
+</div>
+<div class="pt-2">
+<p class="text-[10px] tracking-widest uppercase font-bold text-brand-goldAccent mb-1">GIỜ HỖ TRỢ</p>
+<p class="text-xs text-stone-400">Thứ 2 - Chủ nhật · 9:00 - 23:00</p>
+</div>
+</div>
+<div class="md:col-span-4 space-y-4">
+<h4 class="text-white text-xs font-semibold tracking-widest uppercase mb-4 text-brand-champagne">THÔNG TIN LIÊN HỆ</h4>
+<ul class="text-xs space-y-3 text-stone-400">
+<li class="flex items-center gap-3">
+<div class="w-7 h-7 rounded-full bg-stone-800/80 border border-stone-700 flex items-center justify-center text-brand-goldAccent">
+<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+</path>
+</svg>
+</div>
+<a class="hover:text-brand-goldAccent transition-colors" href="#">Homestay HENRY</a>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-7 h-7 rounded-full bg-stone-800/80 border border-stone-700 flex items-center justify-center text-brand-goldAccent">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+</div>
+<a class="hover:text-brand-goldAccent transition-colors" href="mailto:hello@henry.example">Chưa cập nhật</a>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-7 h-7 rounded-full bg-stone-800/80 border border-stone-700 flex items-center justify-center text-brand-goldAccent">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+</div>
+<a class="hover:text-brand-goldAccent transition-colors" href="mailto:hello@henry.example">hello@henry.example</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 font-light">
+<div class="">© 2026 HOMESTAY HENRY</div>
+<div class="flex items-center gap-1.5 text-stone-400">
+<svg class="w-3.5 h-3.5 text-brand-goldAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+<span class="">THANH PHO HO CHI MINH, VIET NAM</span>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: CarouselInteractivityScript -->
+<script src="assets/js/legacy-home-2.js">
+</script>
+<!-- END: CarouselInteractivityScript -->
+<script src="assets/js/legacy-navigation.js">
+</script>
+<script src="assets/js/guest-picker.js"></script><script src="assets/js/date-picker.js"></script><script src="assets/js/room-links.js"></script></body>
+</html>

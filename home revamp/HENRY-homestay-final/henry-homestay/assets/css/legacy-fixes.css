@@ -1,0 +1,10 @@
+/* Technical fixes only: keep the supplied layouts, colours and components. */
+html { width:100%; height:auto; overflow-x:clip; }
+body { min-width:0; }
+button:focus-visible, a:focus-visible { outline:3px solid #ba0036; outline-offset:4px; }
+.legacy-user-menu { position:absolute; right:16px; top:70px; width:220px; padding:10px; border-radius:16px; background:#fff; color:#222; box-shadow:0 10px 30px #0002; z-index:100; font:14px/1.5 Inter,Arial,sans-serif; }
+.legacy-user-menu a { display:block; padding:10px 12px; border-radius:8px; }
+.legacy-user-menu a:hover { background:#f6f3f2; }
+.legacy-user-menu[hidden] { display:none; }
+@media(max-width:600px) { .legacy-demo-note { font-size:12px; } }
+@media(prefers-reduced-motion:reduce) { *,*:before,*:after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }

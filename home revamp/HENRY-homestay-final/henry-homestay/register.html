@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đăng ký | HENRY homestay</title>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script defer src="assets/js/components.js">
+</script>
+<script defer src="assets/js/forms.js">
+</script>
+<script src="assets/js/popup.js"></script>
+<link rel="stylesheet" href="assets/css/popup-anim.css">
+</head>
+<body data-page="register">
+<div data-site-header>
+</div>
+<main class="auth-layout">
+<aside class="auth-story" aria-label="Không gian HENRY">
+<img src="assets/images/photo-18.jpg" alt="Ban công yên tĩnh nhìn xuống thung lũng">
+<div class="auth-story-copy">
+<h2>Kỳ nghỉ đẹp bắt đầu từ đây.</h2>
+<p>Một tài khoản để lưu căn phòng bạn thích, xem lại kỳ nghỉ và chuẩn bị cho lần ghé nhà tiếp theo.</p>
+</div>
+</aside>
+<div class="auth-content">
+<div class="auth-form">
+<a class="back-home" href="index.html">
+<span data-icon="back">
+</span>Về trang chủ</a>
+<h1>Hẹn bạn ở HENRY</h1>
+<p class="muted">Tạo tài khoản cho những kỳ nghỉ của riêng bạn.</p>
+<form id="register-form">
+<label class="field">Họ và tên<input name="name" placeholder="Tên của bạn" autocomplete="name" required maxlength="80">
+</label>
+<label class="field">Email<input name="email" type="email" placeholder="ban@henry.example" autocomplete="email" required>
+</label>
+<label class="field">Mật khẩu<span class="password-wrap">
+<input name="password" id="register-password" type="password" placeholder="Tạo mật khẩu" autocomplete="new-password" minlength="8" required aria-describedby="password-help">
+<button class="password-toggle" type="button" data-password="register-password" aria-label="Hiện mật khẩu" aria-pressed="false">
+<span data-icon="eye">
+</span>
+</button>
+</span>
+<span class="field-note" id="password-help">Ít nhất 8 ký tự.</span>
+</label>
+<label class="field">Xác nhận mật khẩu<span class="password-wrap">
+<input name="confirm" id="confirm-password" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password" required>
+<button class="password-toggle" type="button" data-password="confirm-password" aria-label="Hiện mật khẩu" aria-pressed="false">
+<span data-icon="eye">
+</span>
+</button>
+</span>
+</label>
+<label class="check">
+<input type="checkbox" name="terms" required>
+<span>Tôi đồng ý với <button type="button" class="btn-link small" data-open-dialog="terms-dialog">Điều khoản sử dụng</button> và <button type="button" class="btn-link small" data-open-dialog="privacy-dialog">Chính sách bảo mật</button>.</span>
+</label>
+<button class="btn btn-primary full" type="submit">Tạo tài khoản<span data-icon="arrow">
+</span>
+</button>
+<p class="form-message" id="auth-message" role="status" hidden>
+</p>
+</form>
+<p class="auth-bottom">Bạn đã có tài khoản? <a class="text-link" href="login.html">Đăng nhập</a>
+</p>
+<p class="auth-note">Bản giao diện: không tạo tài khoản hoặc lưu mật khẩu thật.</p>
+</div>
+</div>
+</main>
+<div data-site-footer>
+</div>
+<dialog id="terms-dialog" aria-labelledby="terms-title">
+<button class="btn btn-icon dialog-close" data-close-dialog aria-label="Đóng">
+<span data-icon="close">
+</span>
+</button>
+<h2 id="terms-title">Điều khoản sử dụng</h2>
+<p>Đây là nội dung minh họa cho HENRY homestay. Thông tin phòng, giá và đơn đặt phòng dùng để xem trước giao diện.</p>
+<p>Điều khoản lưu trú và chính sách hủy cần được chủ homestay xác nhận trước khi website hoạt động.</p>
+</dialog>
+<dialog id="privacy-dialog" aria-labelledby="privacy-title">
+<button class="btn btn-icon dialog-close" data-close-dialog aria-label="Đóng">
+<span data-icon="close">
+</span>
+</button>
+<h2 id="privacy-title">Chính sách bảo mật</h2>
+<p>Trong bản mẫu này, thông tin đăng ký và mật khẩu không được gửi đến máy chủ hoặc lưu trữ. Danh sách phòng yêu thích chỉ được lưu trên trình duyệt của bạn.</p>
+</dialog>
+</body>
+</html>
