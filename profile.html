@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tài khoản | HENRY homestay</title>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script defer src="assets/js/components.js">
+</script>
+<script defer src="assets/js/data.js">
+</script>
+<script defer src="assets/js/profile.js">
+</script>
+<script src="assets/js/popup.js"></script>
+<link rel="stylesheet" href="assets/css/popup-anim.css">
+<link rel="stylesheet" href="assets/css/profile-extra.css">
+</head>
+<body data-page="profile">
+<main class="container page">
+<button type="button" class="back-link" id="back-link"><span aria-hidden="true">←</span> Quay lại</button>
+<div class="title-row">
+<div>
+<h1 id="profile-title">Thông tin cá nhân</h1>
+<p id="profile-description">Một chút thông tin để HENRY đón bạn chu đáo hơn.</p>
+</div>
+</div>
+<div class="account-layout">
+<aside>
+<div class="profile-summary">
+<div class="profile-avatar">KH</div>
+<h2 id="summary-name">Khách trải nghiệm</h2>
+<p>khach@henry.example</p>
+<span class="status">Tài khoản mẫu</span>
+</div>
+<nav class="account-nav" aria-label="Mục tài khoản" role="tablist">
+<button role="tab" id="tab-personal" data-tab="personal" aria-selected="true" aria-controls="panel-personal">
+<span data-icon="user">
+</span>Thông tin cá nhân</button>
+<button role="tab" id="tab-security" data-tab="security" aria-selected="false" aria-controls="panel-security">
+<span data-icon="shield">
+</span>Đăng nhập &amp; bảo mật</button>
+<button role="tab" id="tab-bookings" data-tab="bookings" aria-selected="false" aria-controls="panel-bookings">
+<span data-icon="calendar">
+</span>Đơn đặt phòng</button>
+<button role="tab" id="tab-saved" data-tab="saved" aria-selected="false" aria-controls="panel-saved">
+<span data-icon="heart">
+</span>Phòng đã lưu</button>
+<a href="login.html">
+<span data-icon="logout">
+</span>Đăng xuất</a>
+</nav>
+</aside>
+<div>
+<section id="panel-personal" role="tabpanel" aria-labelledby="tab-personal">
+<form id="profile-form">
+<div class="settings-section">
+<div>
+<h2>Hồ sơ của bạn</h2>
+</div>
+<div class="settings-fields">
+<div class="profile-avatar-row">
+<div class="profile-avatar" id="profile-avatar">KH</div>
+<div>
+<label class="btn small" for="avatar-input">Đổi ảnh đại diện</label>
+<input id="avatar-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+</div>
+</div>
+<label class="field">Họ và tên<input name="name" value="Khách trải nghiệm" autocomplete="name" maxlength="80" required>
+</label>
+<div class="field" role="group" aria-labelledby="dob-label"><span id="dob-label">Ngày sinh</span><div class="dob-row"><select name="dobDay" aria-label="Ngày sinh"><option value="">Ngày</option></select><select name="dobMonth" aria-label="Tháng sinh"><option value="">Tháng</option></select><select name="dobYear" aria-label="Năm sinh"><option value="">Năm</option></select></div></div>
+</div>
+</div>
+<div class="settings-section">
+<div>
+<h2>Thông tin liên hệ</h2>
+</div>
+<div class="settings-fields">
+<label class="field">Email<input name="email" type="email" value="khach@henry.example" autocomplete="email" required>
+</label>
+<label class="field">Số điện thoại<input name="phone" type="tel" placeholder="Thêm số điện thoại" autocomplete="tel" pattern="[0-9+() .-]{8,20}">
+</label>
+<label class="field">Số căn cước công dân<input name="citizenId" inputmode="numeric" pattern="[0-9]{12}" maxlength="12" placeholder="Nhập 12 chữ số" autocomplete="off">
+</label>
+</div>
+</div>
+<div class="settings-footer">
+<p class="small muted">Thay đổi chỉ hiển thị trong phiên xem mẫu này.</p>
+<button type="submit" class="btn btn-primary">Lưu thay đổi<span data-icon="check">
+</span>
+</button>
+</div>
+</form>
+<div class="notice settings-notice">
+<div class="row">
+<span data-icon="shield">
+</span>
+<p>Thông tin minh họa, không được lưu hoặc gửi đi.</p>
+</div>
+</div>
+</section>
+<section id="panel-security" role="tabpanel" aria-labelledby="tab-security" hidden>
+<div class="panel">
+<h2>Đổi mật khẩu</h2>
+<p class="muted" style="margin-top:8px">Chọn mật khẩu riêng cho tài khoản của bạn.</p>
+<form id="security-form" class="settings-fields" style="margin-top:24px">
+<label class="field">Mật khẩu hiện tại<input name="current" type="password" required autocomplete="current-password">
+</label>
+<label class="field">Mật khẩu mới<input name="password" type="password" minlength="8" required autocomplete="new-password" aria-describedby="security-help">
+<span class="field-note" id="security-help">Ít nhất 8 ký tự.</span>
+</label>
+<label class="field">Nhập lại mật khẩu mới<input name="confirm" type="password" required autocomplete="new-password">
+</label>
+<button class="btn btn-primary" type="submit">Cập nhật mật khẩu</button>
+<p class="small muted">Bản mẫu không lưu hoặc cập nhật mật khẩu thật.</p>
+</form>
+</div>
+</section>
+<section id="panel-bookings" role="tabpanel" aria-labelledby="tab-bookings" hidden>
+<div class="panel">
+<div class="panel-heading">
+<h2>Kỳ nghỉ sắp tới</h2>
+<span class="small muted">1 đơn</span>
+</div>
+<article class="booking-mini">
+<img src="assets/images/photo-03.jpg" alt="Phòng Vista View 42">
+<div>
+<span class="status">Đã xác nhận</span>
+<h3>Vista View 42</h3>
+<p class="small muted">28 – 30 tháng 10, 2026 · 2 đêm · 2 khách</p>
+<p class="small" style="margin-top:6px">Mã đơn: HN-281026</p>
+<a class="btn-link" href="booking-detail.html">Xem chi tiết đơn<span data-icon="arrow">
+</span>
+</a>
+</div>
+</article>
+</div>
+<div class="notice" style="margin-top:24px">Đơn đặt phòng minh họa · Không có giao dịch thật.</div>
+</section>
+<section id="panel-saved" role="tabpanel" aria-labelledby="tab-saved" hidden>
+<div id="saved-rooms" class="saved-rooms">
+</div>
+</section>
+</div>
+</div>
+</main>
+<div data-site-footer>
+</div>
+</body>
+</html>
