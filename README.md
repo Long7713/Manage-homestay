@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Hệ thống quản lý homestay
 
 > Cập nhật ngày **24/10/2026**. Kế hoạch **24–30/10/2026**; ưu tiên hoàn thiện báo cáo trong **ngày 27/10**, sẵn sàng nộp trước **28/10**.
@@ -196,3 +197,43 @@ Leader duyệt backlog và khối lượng ước lượng trước khi đo ti�
 Ca ưu tiên: đặt trùng; tối đa 2 đơn chờ cọc; giờ thêm nguyên, từ chối 30 phút; phí trả trễ 4/5/11/35 phút; không gửi mã trước giờ bắt đầu; cảnh báo đơn cùng SĐT chồng giờ ở phòng khác; thuê 2 ngày thứ Sáu + thứ Bảy; xóa tệp bằng chứng chỉ khi đủ 30 ngày và đã kiểm tra; hết hạn 15 phút, đúng mốc 15:00 và tác vụ lặp; hủy thiếu tệp bằng chứng; tiền đúng hạn nhưng nhập muộn; chặn ở cơ sở A hiển thị ở cơ sở B; mở chặn chỉ quản lý duyệt; hoàn cọc tại 48/72 giờ; khách đã cọc không đến và ghi chú tỷ lệ cọc; đơn kết thúc chuyển sang lịch sử; khung 24h tối thứ Sáu; container giờ UTC; dọn 20 phút; không ghi thu tiền trùng. Chỉ ghi **đã đạt** sau khi thực chạy và có bằng chứng.
 
 > Đây là tài liệu kế hoạch và yêu cầu, không xác nhận ứng dụng, Docker hoặc database đã triển khai.
+=======
+# HENRY homestay — bộ giao diện HTML
+
+Mở `index.html` trực tiếp bằng Chrome hoặc Edge. Không cần cài thư viện, chạy server hay build. Giữ nguyên cả thư mục `assets` bên cạnh các file HTML.
+
+## Các trang
+
+| File | Nội dung |
+| --- | --- |
+| `index.html` | Trang chủ từ mẫu có sẵn; giữ bố cục và thiết kế |
+| `room-detail.html` | Chi tiết phòng từ mẫu có sẵn; giữ bố cục và thiết kế |
+| `rooms.html` | Kết quả tìm phòng, bộ lọc, sắp xếp, lưu phòng |
+| `login.html` | Đăng nhập, hiện/ẩn mật khẩu, quên mật khẩu mẫu |
+| `register.html` | Đăng ký và kiểm tra xác nhận mật khẩu |
+| `food.html` | Góc ẩm thực dạng bài viết, lọc chủ đề, đọc bài trong hộp thoại |
+| `booking-detail.html` | Chi tiết kỳ nghỉ, chi phí, thanh toán mẫu, in và sao chép mã |
+| `profile.html` | Hồ sơ, bảo mật, đơn đặt phòng và phòng đã lưu |
+
+## Cấu trúc để học và chỉnh sửa
+
+- `assets/css/base.css`: token màu, font, bố cục chung, header, footer, nút và form.
+- `assets/css/pages.css`: bố cục riêng theo từng trang; có chú thích chia khu vực.
+- `assets/js/components.js`: header, footer và bộ icon SVG nét viền dùng chung cho 6 trang mới; không dùng fetch nên mở được qua file://.
+- `assets/js/data.js`: danh sách 6 phòng và đơn mẫu, định dạng tiền, kiểm tra tổng chi phí.
+- `assets/js/rooms.js`, `forms.js`, `food.js`, `booking.js`, `profile.js`: tương tác theo trang.
+- `assets/css/legacy-*.css`, `assets/js/legacy-*.js`: CSS/JS tách ra từ hai HTML mẫu và liên kết điều hướng. Hai mẫu có thiết kế riêng được giữ lại theo yêu cầu.
+- `assets/images`, `assets/fonts`: ảnh từ HTML đã cung cấp và font được lưu nội bộ; không cần tải tài nguyên khi mở website.
+
+Các HTML gốc và DESIGN.md ở thư mục cha không bị sửa. Hai bản trong bộ bàn giao chỉ thay thương hiệu, thông tin giả lập, đường dẫn tài nguyên và điều hướng; bỏ kích thước cố định của bản xuất để có thể cuộn trang.
+
+## Phạm vi minh họa
+
+Không backend, cơ sở dữ liệu, xác thực, gửi email hay thanh toán. Đăng nhập/đăng ký hiển thị phản hồi mẫu. Hồ sơ và ảnh đại diện chỉ thay đổi trong phiên hiện tại; không tải lên máy chủ. Phòng yêu thích được lưu trong localStorage trên trình duyệt. Bộ lọc dùng danh sách mẫu; ngày tìm kiếm không kiểm tra phòng trống thật.
+
+Tên khách, email thuộc miền `.example`, giá, ngày lưu trú, trạng thái đơn, món ăn, chính sách và thành phần món ăn đều là dữ liệu mẫu cần chủ homestay xác nhận. Không có số điện thoại, tài khoản ngân hàng hoặc giấy tờ thật trong các trang mới. Luồng VietQR kế thừa được chuyển sang trang chi tiết đơn mẫu, không tạo thanh toán.
+
+Ảnh được tái sử dụng từ chính HTML đã cung cấp (bảng đối chiếu tại `assets/image-map.json`), không tìm thêm ảnh bên ngoài. Trang ẩm thực dùng ảnh gian bếp và ban công có sẵn, nội dung món ăn được trình bày bằng chữ. Cần bổ sung ảnh món thật của HENRY nếu muốn minh họa từng món trước khi sử dụng thực tế.
+
+Hệ trang mới dùng Inter, nền `#fcf9f8`, chữ `#222222`, nhấn `#ba0036` từ DESIGN.md. Kết cấu dựa trên Achromatic ledger, seed 1929619870; màu nút, bo góc và điều hướng theo thương hiệu có sẵn. Không thêm sidebar quản trị nhiều chủ nhà.
+>>>>>>> van-viet

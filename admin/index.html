@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quản trị | HENRY homestay</title>
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="wrapper">
+<aside class="sidebar" id="sidebar">
+<div class="side-user"><div class="side-avatar">H</div><div><b>Hệ thống quản lý</b><small>Online</small></div></div>
+<ul class="side-menu" id="side-menu"></ul>
+<div class="side-foot"><button type="button" class="logout-btn" id="logout-btn">Đăng xuất</button></div>
+</aside>
+<div class="main">
+<header class="topbar"><button class="menu-btn" id="menu-btn" aria-label="Mở menu">☰</button><span class="brand">HENRY HOMESTAY</span><span class="spacer"></span></header>
+<section class="content-header"><h1 id="page-title"></h1></section>
+<section class="content" id="view"></section>
+</div>
+</div>
+<dialog id="modal"><div class="m-head"><h3 id="m-title"></h3><button type="button" id="m-close" aria-label="Đóng">×</button></div><div class="m-body" id="m-body"></div><div class="m-foot" id="m-foot"></div></dialog>
+<div class="toast" id="toast" hidden></div>
+<script src="../assets/js/data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
