@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="HenryHomestay.Admin/HenryHomestay.Admin.csproj" />
+  <Project Path="HenryHomestay.BLL/HenryHomestay.BLL.csproj" />
+  <Project Path="HenryHomestay.Core/HenryHomestay.Core.csproj" />
+  <Project Path="HenryHomestay.DAL/HenryHomestay.DAL.csproj" />
+  <Project Path="HenryHomestay.Web/HenryHomestay.Web.csproj" />
+</Solution>

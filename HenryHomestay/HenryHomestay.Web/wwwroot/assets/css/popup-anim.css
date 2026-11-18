@@ -1,0 +1,17 @@
+/* Hiệu ứng popup giống Airbnb: hiện mờ dần + trượt xuống nhẹ, đóng thì mờ đi. Dùng translate/scale riêng để không đè transform có sẵn. */
+.gp-popup, .dp-popup, .legacy-user-menu, .account-menu { transform-origin:top center; animation:hn-pop-in .2s cubic-bezier(.2,.8,.2,1); }
+.gp-popup { transform-origin:top right; }
+.is-closing { animation:hn-pop-out .16s ease-in forwards !important; pointer-events:none; }
+@keyframes hn-pop-in { from { opacity:0; translate:0 -8px; scale:.97; } to { opacity:1; translate:0 0; scale:1; } }
+@keyframes hn-pop-out { from { opacity:1; translate:0 0; scale:1; } to { opacity:0; translate:0 -8px; scale:.97; } }
+
+/* Thanh tìm kiếm: khi mở popup, cả thanh xám đi và ô đang chọn nổi lên màu trắng. */
+[data-purpose="booking-search-bar"] > div, .rs-bar { transition:background-color .2s; }
+[data-purpose="booking-search-bar"] > div:has(.dp-active, .gp-active), .rs-bar:has(.dp-active, .gp-active) { background-color:#ebebeb !important; }
+.date-zone, .guest-picker, .rs-zone { transition:background-color .15s, box-shadow .2s; }
+.date-zone:not(.dp-active):not(.gp-active):hover, .guest-picker:not(.gp-active):hover { background-color:#f2f2f2 !important; }
+[data-purpose="booking-search-bar"] > div:has(.dp-active, .gp-active) .date-zone:not(.dp-active):hover,
+[data-purpose="booking-search-bar"] > div:has(.dp-active, .gp-active) .guest-picker:not(.gp-active):hover,
+.rs-bar:has(.dp-active, .gp-active) .rs-zone:not(.dp-active):not(.gp-active):hover { background-color:#dddddd !important; }
+.date-zone.dp-active, .guest-picker.gp-active { background-color:#fff !important; box-shadow:0 2px 12px rgba(0,0,0,.18); }
+@media(prefers-reduced-motion:reduce) { .gp-popup, .dp-popup, .legacy-user-menu, .account-menu { animation:none; } }

@@ -1,0 +1,4 @@
+{
+  "Provider": "Auto",
+  "SqlServerConnectionString": "Server=.\\SQLEXPRESS;Database=HenryHomestayDB;Trusted_Connection=True;TrustServerCertificate=True;Connect Timeout=3;"
+}
