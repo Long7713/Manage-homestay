@@ -1,0 +1,30 @@
+.back-link { display:inline-flex; align-items:center; gap:8px; margin:28px 0 8px; padding:8px 14px 8px 8px; border:0; background:none; font:600 15px var(--font,Inter,sans-serif); color:#222; cursor:pointer; border-radius:9999px; }
+.back-link:hover { background:#f2f2f2; }
+.back-link span { font-size:20px; line-height:1; }
+.choice-group { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0 20px; }
+.choice-group.choice-stack { grid-template-columns:1fr; margin:10px 0 16px; }
+.choice { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border:1px solid #d6d3d1; border-radius:14px; background:#fff; cursor:pointer; transition:border-color .15s, box-shadow .15s; }
+.choice:hover { border-color:#222; }
+.choice:has(input:checked) { border-color:#222; box-shadow:0 0 0 1px #222; }
+.choice input { margin-top:3px; accent-color:#ba0036; width:16px; height:16px; flex:none; }
+.choice-body { display:flex; flex-direction:column; gap:2px; }
+.choice-body small { font-size:13px; line-height:1.4; color:#6a6a6a; }
+.cancel-note { margin:12px 0 0; font-size:14px; font-weight:600; color:#222; }
+.guest-other[hidden] { display:none; }
+@media(max-width:600px) { .choice-group { grid-template-columns:1fr; } }
+.dob-row { display:grid; grid-template-columns:1fr 1fr 1.3fr; gap:12px; margin-top:8px; }
+@media(min-width:1151px) { .booking-layout { grid-template-columns:minmax(0,1fr) 470px; } }
+@media(max-width:1150px) and (min-width:851px) { .booking-layout { grid-template-columns:minmax(0,1fr) 440px; } }
+.cancel-note { font-size:14px; }
+@media(min-width:851px) { .cancel-note { white-space:nowrap; } }
+
+.payment-dialog { width:min(460px,calc(100% - 32px)); text-align:center; }
+.payment-dialog h2 { font-size:22px; text-align:left; }
+.pay-qr { margin:12px auto 4px; width:220px; height:220px; padding:8px; border:1px solid #e7e5e4; border-radius:16px; background:#fff; }
+.pay-qr img { width:100%; height:100%; object-fit:contain; display:block; }
+.pay-info { margin:16px 0 0; text-align:left; display:grid; gap:10px; }
+.pay-info div { display:flex; justify-content:space-between; gap:16px; padding-bottom:10px; border-bottom:1px solid #eee; }
+.pay-info dt { color:#6a6a6a; font-size:14px; }
+.pay-info dd { margin:0; font-weight:600; text-align:right; }
+.pay-note { margin:18px 0 20px; font-weight:700; line-height:1.5; text-align:left; }
+.pay-note a { color:#ba0036; text-decoration:underline; }

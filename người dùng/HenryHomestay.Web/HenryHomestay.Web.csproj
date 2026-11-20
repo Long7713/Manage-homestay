@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\HenryHomestay.Core\HenryHomestay.Core.csproj" />
+    <ProjectReference Include="..\HenryHomestay.DAL\HenryHomestay.DAL.csproj" />
+    <ProjectReference Include="..\HenryHomestay.BLL\HenryHomestay.BLL.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>
